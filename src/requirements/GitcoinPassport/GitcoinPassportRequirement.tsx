@@ -97,7 +97,7 @@ const GitcoinPassportRequirement = ({ ...rest }: RequirementProps): JSX.Element 
                                         month: "long",
                                         day: "numeric",
                                       })
-                                    : value}
+                                    : (value as string)}
                                 </Text>
                               </Td>
                             </Tr>
