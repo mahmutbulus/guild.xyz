@@ -82,8 +82,8 @@ const GitcoinPassportRequirement = ({ ...rest }: RequirementProps): JSX.Element 
                         borderBottomRadius="xl"
                       >
                         <Tbody fontWeight="normal" fontSize="xs">
-                          {Object.entries(requirement.data ?? {}).map(
-                            ([key, value]) => (
+                          {Object.entries(requirement.data)?.map(
+                            ([key, value]: [string, any]) => (
                               <Tr key={key}>
                                 <Td>{nameByKey[key]}</Td>
                                 <Td>
