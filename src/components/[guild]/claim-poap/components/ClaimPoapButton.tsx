@@ -3,11 +3,10 @@ import useMembershipUpdate from "components/[guild]/JoinModal/hooks/useMembershi
 import useGuild from "components/[guild]/hooks/useGuild"
 import { usePostHogContext } from "components/_app/PostHogProvider"
 import Button from "components/common/Button"
-import useMembership, {
-  useRoleMembership,
-} from "components/explorer/hooks/useMembership"
+import { useRoleMembership } from "components/explorer/hooks/useMembership"
 import useShowErrorToast from "hooks/useShowErrorToast"
 import useClaimText from "platforms/SecretText/hooks/useClaimText"
+import { useAccount } from "wagmi"
 import { useClaimedReward } from "../../../../hooks/useClaimedReward"
 import { RolePlatform } from "../../../../types"
 import { MintLinkModal } from "./MintLinkModal"
@@ -18,6 +17,9 @@ type Props = {
 
 const ClaimPoapButton = ({ rolePlatform, ...rest }: Props) => {
   const { captureEvent } = usePostHogContext()
+
+  const { isConnected } = useAccount()
+
   const { claimed, isLoading: isClaimedLoading } = useClaimedReward(rolePlatform.id)
 
   const { urlName, roles } = useGuild()
@@ -36,7 +38,6 @@ const ClaimPoapButton = ({ rolePlatform, ...rest }: Props) => {
   } = useClaimText(rolePlatform.id)
 
   const showErrorToast = useShowErrorToast()
-  const { isMember } = useMembership()
   const { triggerMembershipUpdate, isLoading: isMembershipUpdateLoading } =
     useMembershipUpdate({
       onSuccess: () => onSubmit(),
@@ -53,7 +54,7 @@ const ClaimPoapButton = ({ rolePlatform, ...rest }: Props) => {
     isClaimLoading ||
     isClaimedLoading
 
-  const isDisabled = rest?.isDisabled || !rolePlatform?.capacity
+  const isDisabled = !isConnected || rest?.isDisabled || !rolePlatform?.capacity
 
   return (
     <>
@@ -77,10 +78,12 @@ const ClaimPoapButton = ({ rolePlatform, ...rest }: Props) => {
 
           if (response) return
 
-          if (isMember) {
+          if (hasRoleAccess) {
             onSubmit()
           } else {
-            triggerMembershipUpdate()
+            triggerMembershipUpdate({
+              roleIds: [roleId],
+            })
           }
         }}
         {...rest}

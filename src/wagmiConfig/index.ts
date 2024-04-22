@@ -3,11 +3,14 @@ import {
   beraTestnet,
   bitfinityTestnet,
   exosama,
+  formTestnet,
+  metisSepolia,
   neonEVM,
   oasisSapphire,
   ontology,
   palm,
   taikoKatlaTestnet,
+  x1,
 } from "static/customChains"
 import { mutate } from "swr"
 import fetcher, { fetcherWithSign } from "utils/fetcher"
@@ -42,6 +45,7 @@ import {
   metis,
   moonbeam,
   moonriver,
+  opBNB,
   optimism,
   pgn,
   polygon,
@@ -61,15 +65,6 @@ import {
 import { coinbaseWallet, injected, safe, walletConnect } from "wagmi/connectors"
 import { mock } from "wagmiConfig/mockConnector"
 import waasConnector, { WAAS_CONNECTOR_ID } from "wagmiConfig/waasConnector"
-
-const withCustomRPC = (chain: Chain, rpcUrl: string): Chain => ({
-  ...chain,
-  rpcUrls: {
-    default: {
-      http: [rpcUrl],
-    },
-  },
-})
 
 /**
  * We should consider adding only those chains here which we actually use for
@@ -96,11 +91,12 @@ export const wagmiConfig = createConfig({
     moonbeam,
     moonriver,
     metis,
+    metisSepolia,
     cronos,
     boba,
     palm,
     exosama,
-    withCustomRPC(evmos, "https://evmos.lava.build"),
+    evmos,
     zetachain,
     zetachainAthensTestnet,
     scroll,
@@ -116,6 +112,7 @@ export const wagmiConfig = createConfig({
     shimmer,
     kava,
     bitfinityTestnet,
+    x1,
     x1Testnet,
     ontology,
     beraTestnet,
@@ -128,13 +125,15 @@ export const wagmiConfig = createConfig({
     astarZkEVM,
     coreDao,
     liskSepolia as Chain,
+    opBNB,
+    formTestnet,
   ],
   transports: {
     [mainnet.id]: http(),
-    [polygon.id]: http(),
+    [polygon.id]: http("https://polygon-bor-rpc.publicnode.com"),
     [polygonMumbai.id]: http(),
     [polygonZkEvm.id]: http(),
-    [base.id]: http(),
+    [base.id]: http("https://base-rpc.publicnode.com"),
     [baseSepolia.id]: http(),
     [optimism.id]: http(),
     [arbitrum.id]: http(),
@@ -148,11 +147,12 @@ export const wagmiConfig = createConfig({
     [moonbeam.id]: http(),
     [moonriver.id]: http(),
     [metis.id]: http(),
+    [metisSepolia.id]: http(),
     [cronos.id]: http(),
     [boba.id]: http(),
     [palm.id]: http(),
     [exosama.id]: http(),
-    [evmos.id]: http(),
+    [evmos.id]: http("https://evmos.lava.build"),
     [zetachain.id]: http(),
     [zetachainAthensTestnet.id]: http(),
     [scroll.id]: http(),
@@ -168,6 +168,7 @@ export const wagmiConfig = createConfig({
     [shimmer.id]: http(),
     [kava.id]: http(),
     [bitfinityTestnet.id]: http(),
+    [x1.id]: http(),
     [x1Testnet.id]: http(),
     [ontology.id]: http(),
     [beraTestnet.id]: http(),
@@ -180,6 +181,8 @@ export const wagmiConfig = createConfig({
     [astarZkEVM.id]: http(),
     [coreDao.id]: http(),
     [liskSepolia.id]: http(),
+    [opBNB.id]: http(),
+    [formTestnet.id]: http(),
   },
   ssr: true,
   connectors: process.env.NEXT_PUBLIC_MOCK_CONNECTOR

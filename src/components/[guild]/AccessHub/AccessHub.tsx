@@ -80,7 +80,9 @@ const AccessHub = (): JSX.Element => {
     featureFlags,
     guildPin,
     groups,
+    roles,
     onboardingComplete,
+    isDetailed,
   } = useGuild()
 
   const group = useRoleGroup()
@@ -95,10 +97,12 @@ const AccessHub = (): JSX.Element => {
     featureFlags.includes("GUILD_CREDENTIAL") &&
     ((isMember && guildPin?.isActive) || isAdmin)
 
+  const hasVisiblePages = !!groups?.length && roles?.some((role) => !!role.groupId)
+
   const showAccessHub =
     (isAdmin ? !!onboardingComplete : isMember) ||
     (!!accessedGuildPlatforms?.length && !!onboardingComplete) ||
-    (!!groups?.length && !group)
+    (hasVisiblePages && !group)
 
   return (
     <ClientOnly>
@@ -130,7 +134,7 @@ const AccessHub = (): JSX.Element => {
                 guildPlatform={platform}
                 key={platform.id}
                 cornerButton={
-                  isAdmin && PlatformCardMenu ? (
+                  isAdmin && isDetailed && PlatformCardMenu ? (
                     <PlatformCardMenu platformGuildId={platform.platformGuildId} />
                   ) : PlatformCardWarning ? (
                     <PlatformCardWarning guildPlatform={platform} />

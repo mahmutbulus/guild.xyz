@@ -41,11 +41,11 @@ const RoleRequirements = ({
   initialRequirementsRef,
 }: Props) => {
   const guild = useGuild()
-  const { data = [] } = useRequirements(role.id)
+  const { data } = useRequirements(role.id)
 
   const requirements =
-    role.hiddenRequirements || (data.length === 0 && !(guild as any).isFallback)
-      ? [...data, { type: "HIDDEN", roleId: role.id } as Requirement]
+    role.hiddenRequirements || (data?.length === 0 && !(guild as any).isFallback)
+      ? [...(data ?? []), { type: "HIDDEN", roleId: role.id } as Requirement]
       : data
 
   const isVirtualList = requirements?.length > VIRTUAL_LIST_REQUIREMENT_LIMIT
@@ -159,7 +159,7 @@ const VirtualRequirements = memo(
       const descriptionHeight =
         descriptionRef?.current?.getBoundingClientRect().height ?? 0
       return Math.max(descriptionHeight + 50, 500)
-    }, [descriptionRef?.current])
+    }, [descriptionRef])
 
     const Row = memo(({ index, style }: any) => {
       const rowRef = useRef<HTMLDivElement>(null)
@@ -181,7 +181,7 @@ const VirtualRequirements = memo(
         return () => {
           observer.disconnect()
         }
-      }, [rowRef])
+      }, [rowRef, index])
 
       return (
         <Box style={style}>

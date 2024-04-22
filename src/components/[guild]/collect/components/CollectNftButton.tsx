@@ -4,9 +4,7 @@ import useNftDetails from "components/[guild]/collect/hooks/useNftDetails"
 import useGuild from "components/[guild]/hooks/useGuild"
 import { usePostHogContext } from "components/_app/PostHogProvider"
 import Button from "components/common/Button"
-import useMembership, {
-  useRoleMembership,
-} from "components/explorer/hooks/useMembership"
+import { useRoleMembership } from "components/explorer/hooks/useMembership"
 import useNftBalance from "hooks/useNftBalance"
 import useShowErrorToast from "hooks/useShowErrorToast"
 import { useAccount, useBalance } from "wagmi"
@@ -22,14 +20,14 @@ const CollectNftButton = ({
   label = "Collect NFT",
   ...rest
 }: Props): JSX.Element => {
-  const { captureEvent } = usePostHogContext()
+  const { captureEvent, startSessionRecording } = usePostHogContext()
 
   const { chain, nftAddress, alreadyCollected, roleId } = useCollectNftContext()
   const { urlName } = useGuild()
 
   const { isLoading: isAccessLoading, hasRoleAccess } = useRoleMembership(roleId)
 
-  const { address, chainId } = useAccount()
+  const { isConnected, address, chainId } = useAccount()
   const shouldSwitchNetwork = chainId !== Chains[chain]
 
   const {
@@ -39,7 +37,6 @@ const CollectNftButton = ({
   } = useCollectNft()
 
   const showErrorToast = useShowErrorToast()
-  const { isMember } = useMembership()
   const { triggerMembershipUpdate, isLoading: isMembershipUpdateLoading } =
     useMembershipUpdate({
       onSuccess: () => onMintSubmit(),
@@ -77,7 +74,8 @@ const CollectNftButton = ({
     ? mintLoadingText
     : "Checking eligibility"
 
-  const isDisabled = shouldSwitchNetwork || alreadyCollected || !isSufficientBalance
+  const isDisabled =
+    !isConnected || shouldSwitchNetwork || alreadyCollected || !isSufficientBalance
 
   return (
     <Button
@@ -91,11 +89,14 @@ const CollectNftButton = ({
         captureEvent("Click: CollectNftButton (GuildCheckout)", {
           guild: urlName,
         })
+        startSessionRecording()
 
-        if (isMember) {
+        if (hasRoleAccess) {
           onMintSubmit()
         } else {
-          triggerMembershipUpdate()
+          triggerMembershipUpdate({
+            roleIds: [roleId],
+          })
         }
       }}
       {...rest}
