@@ -1,3 +1,4 @@
+import { Schemas } from "@guildxyz/types"
 import { FeatureFlag } from "components/[guild]/EditGuild/components/FeatureFlags"
 import { ContractCallFunction } from "components/[guild]/RolePlatforms/components/AddRoleRewardModal/components/AddContractCallPanel/components/CreateNftForm/hooks/useCreateNft"
 import { RequirementType } from "requirements"
@@ -92,6 +93,7 @@ type PlatformName =
   | "POINTS"
   | "FORM"
   | "GATHER_TOWN"
+  | "ERC20"
 
 type PlatformUserData = {
   acessToken?: string
@@ -218,10 +220,15 @@ type PlatformGuildData = {
     gatherApiKey?: never
     gatherAffiliation?: never
     gatherRole?: never
+    poolId?: never
+    multiplier?: never
+    tokenDecimals?: never
+    tokenAddress?: never
   }
   GOOGLE: {
     role?: "reader" | "commenter" | "writer"
     inviteChannel?: never
+    invite?: never
     joinButton?: never
     needCaptcha?: never
     mimeType?: string
@@ -244,6 +251,9 @@ type PlatformGuildData = {
     gatherApiKey?: never
     gatherAffiliation?: never
     gatherRole?: never
+    poolId?: never
+    multiplier?: never
+    tokenAddress?: never
   }
   CONTRACT_CALL: {
     chain: Chain
@@ -255,6 +265,7 @@ type PlatformGuildData = {
     imageUrl: string
     description: string
     inviteChannel?: never
+    invite?: never
     joinButton?: never
     needCaptcha?: never
     role?: never
@@ -269,6 +280,9 @@ type PlatformGuildData = {
     gatherApiKey?: never
     gatherAffiliation?: never
     gatherRole?: never
+    poolId?: never
+    multiplier?: never
+    tokenAddress?: never
   }
   UNIQUE_TEXT: {
     texts: string[]
@@ -282,6 +296,7 @@ type PlatformGuildData = {
     symbol?: never
     description?: never
     inviteChannel?: never
+    invite?: never
     joinButton?: never
     needCaptcha?: never
     role?: never
@@ -294,6 +309,9 @@ type PlatformGuildData = {
     gatherApiKey?: never
     gatherAffiliation?: never
     gatherRole?: never
+    poolId?: never
+    multiplier?: never
+    tokenAddress?: never
   }
   TEXT: {
     text: string
@@ -307,6 +325,7 @@ type PlatformGuildData = {
     symbol?: never
     description?: never
     inviteChannel?: never
+    invite?: never
     joinButton?: never
     needCaptcha?: never
     role?: never
@@ -319,6 +338,9 @@ type PlatformGuildData = {
     gatherApiKey?: never
     gatherAffiliation?: never
     gatherRole?: never
+    poolId?: never
+    multiplier?: never
+    tokenAddress?: never
   }
   POAP: {
     text?: never
@@ -332,6 +354,7 @@ type PlatformGuildData = {
     symbol?: never
     description?: never
     inviteChannel?: never
+    invite?: never
     joinButton?: never
     needCaptcha?: never
     role?: never
@@ -344,6 +367,9 @@ type PlatformGuildData = {
     gatherApiKey?: never
     gatherAffiliation?: never
     gatherRole?: never
+    poolId?: never
+    multiplier?: never
+    tokenAddress?: never
   }
   FORM: {
     text?: never
@@ -357,6 +383,7 @@ type PlatformGuildData = {
     symbol?: never
     description?: never
     inviteChannel?: never
+    invite?: never
     joinButton?: never
     needCaptcha?: never
     role?: never
@@ -369,6 +396,9 @@ type PlatformGuildData = {
     gatherApiKey?: never
     gatherAffiliation?: never
     gatherRole?: never
+    poolId?: never
+    multiplier?: never
+    tokenAddress?: never
   }
   GATHER: {
     name: string
@@ -387,6 +417,7 @@ type PlatformGuildData = {
     symbol?: never
     description?: never
     inviteChannel?: never
+    invite?: never
     joinButton?: never
     needCaptcha?: never
     mimeType?: never
@@ -394,6 +425,9 @@ type PlatformGuildData = {
     fancyId?: never
     eventId?: never
     formId?: never
+    poolId?: never
+    multiplier?: never
+    tokenAddress?: never
   }
   POINTS: {
     text?: never
@@ -407,6 +441,7 @@ type PlatformGuildData = {
     symbol?: never
     description?: never
     inviteChannel?: never
+    invite?: never
     joinButton?: never
     needCaptcha?: never
     role?: never
@@ -419,6 +454,37 @@ type PlatformGuildData = {
     gatherApiKey?: never
     gatherAffiliation?: never
     gatherRole?: never
+    poolId?: never
+    multiplier?: never
+    tokenAddress?: never
+  }
+  ERC20: {
+    poolId: number
+    chain: Chain
+    contractAddress: `0x${string}`
+    tokenAddress: `0x${string}`
+    name: string
+    description: string
+    imageUrl: string
+    gatherSpaceId?: never
+    gatherApiKey?: never
+    gatherAffiliation?: never
+    gatherRole?: never
+    role?: never
+    text?: never
+    texts?: never
+    function?: never
+    argsToSign?: never
+    symbol?: never
+    inviteChannel?: never
+    invite?: never
+    joinButton?: never
+    needCaptcha?: never
+    mimeType?: never
+    iconLink?: never
+    fancyId?: never
+    eventId?: never
+    formId?: never
   }
 }
 
@@ -469,6 +535,7 @@ type RolePlatform = {
   claimedCount?: number
   startTime?: string
   endTime?: string
+  dynamicAmount?: Schemas["DynamicAmount"]
 }
 
 enum Visibility {
@@ -500,10 +567,11 @@ type Role = SimpleRole & {
   createdAt?: string
   updatedAt?: string
   lastSyncedAt?: string
+  requirements: Requirement[]
 }
 
 type GuildPlatform = {
-  id: number
+  id?: number
   platformId: PlatformType
   platformName?: PlatformName
   platformGuildId: string
@@ -660,7 +728,9 @@ export enum PlatformType {
   "POAP" = 14,
   "FORM" = 15,
   "GATHER_TOWN" = 16,
+  "ERC20" = 17,
 }
+
 type WalletConnectConnectionData = {
   connected: boolean
   accounts: string[]
@@ -697,14 +767,6 @@ type RequestMintLinksForm = {
   requested_codes: number
   secret_code: string
   redeem_type: string
-}
-
-type GoogleFile = {
-  name: string
-  mimeType: string
-  webViewLink: string
-  iconLink: string
-  platformGuildId: string
 }
 
 type Without<First, Second> = {
@@ -773,7 +835,6 @@ export type {
   EventSources,
   EventSourcesKey,
   GitPoap,
-  GoogleFile,
   Group,
   Guild,
   GuildAdmin,

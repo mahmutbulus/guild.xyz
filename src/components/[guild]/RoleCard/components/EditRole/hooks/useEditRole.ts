@@ -1,5 +1,6 @@
 import useMembershipUpdate from "components/[guild]/JoinModal/hooks/useMembershipUpdate"
 import useGuild from "components/[guild]/hooks/useGuild"
+import useCustomPosthogEvents from "hooks/useCustomPosthogEvents"
 import useShowErrorToast from "hooks/useShowErrorToast"
 import useSubmit from "hooks/useSubmit/useSubmit"
 import { OneOf } from "types"
@@ -12,12 +13,12 @@ const mapToObject = <T extends { id: number }>(array: T[], by: keyof T = "id") =
 
 const useEditRole = (roleId: number, onSuccess?: () => void) => {
   const { id, mutateGuild } = useGuild()
-
   const { triggerMembershipUpdate } = useMembershipUpdate()
 
   const errorToast = useShowErrorToast()
   const showErrorToast = useShowErrorToast()
   const fetcherWithSign = useFetcherWithSign()
+  const { rewardCreated } = useCustomPosthogEvents()
 
   const submit = async (data: RoleEditFormData) => {
     const {
@@ -51,15 +52,17 @@ const useEditRole = (roleId: number, onSuccess?: () => void) => {
         )
     )
 
+    const rolePlatformsToCreate = (rolePlatforms ?? []).filter(
+      (rolePlatform) => !("id" in rolePlatform)
+    )
+
     const rolePlatformCreations = Promise.all(
-      (rolePlatforms ?? [])
-        .filter((rolePlatform) => !("id" in rolePlatform))
-        .map((rolePlatform) =>
-          fetcherWithSign([
-            `/v2/guilds/${id}/roles/${roleId}/role-platforms`,
-            { method: "POST", body: rolePlatform },
-          ]).catch((error) => error)
-        )
+      rolePlatformsToCreate.map((rolePlatform) =>
+        fetcherWithSign([
+          `/v2/guilds/${id}/roles/${roleId}/role-platforms`,
+          { method: "POST", body: rolePlatform },
+        ]).catch((error) => error)
+      )
     )
 
     const [updatedRole, updatedRolePlatforms, createdRolePlatforms] =
@@ -75,6 +78,14 @@ const useEditRole = (roleId: number, onSuccess?: () => void) => {
   const useSubmitResponse = useSubmit(submit, {
     onSuccess: (result) => {
       const { updatedRole, updatedRolePlatforms, createdRolePlatforms } = result
+
+      if (createdRolePlatforms?.length > 0) {
+        createdRolePlatforms.forEach((rolePlatform) => {
+          if (rolePlatform?.createdGuildPlatform) {
+            rewardCreated(rolePlatform.createdGuildPlatform.platformId)
+          }
+        })
+      }
 
       const [failedRolePlatformUpdatesCount, failedRolePlatformCreationsCount] = [
         updatedRolePlatforms.filter((req) => !!req.error).length,

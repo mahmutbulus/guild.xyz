@@ -1,25 +1,17 @@
 import {
-  Button,
+  Box,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
   Text,
 } from "@chakra-ui/react"
 import DiscordGuildSetup from "components/common/DiscordGuildSetup"
-import useGateables from "hooks/useGateables"
-import {
-  FormProvider,
-  useFieldArray,
-  useForm,
-  useFormContext,
-  useWatch,
-} from "react-hook-form"
+import PermissionAlert from "components/common/DiscordGuildSetup/components/PermissionAlert"
+import { useFieldArray, useFormContext } from "react-hook-form"
 import { GuildFormType, PlatformGuildData, PlatformType } from "types"
-import getRandomInt from "utils/getRandomInt"
 
 type Props = {
   isOpen: boolean
@@ -32,19 +24,6 @@ const CreateGuildDiscord = ({ isOpen, onClose }: Props): JSX.Element => {
     control,
     name: "guildPlatforms",
   })
-  const discordMethods = useForm({
-    defaultValues: { discordServerId: "", name: "", img: undefined },
-  })
-  const selectedServer = useWatch({
-    control: discordMethods.control,
-    name: `discordServerId`,
-  })
-
-  const discordServers = useGateables(PlatformType.DISCORD)
-
-  const selectedDiscordServerData = discordServers.gateables?.find(
-    (server) => server.id === discordMethods.getValues("discordServerId")
-  )
 
   return (
     <Modal
@@ -58,50 +37,37 @@ const CreateGuildDiscord = ({ isOpen, onClose }: Props): JSX.Element => {
       <ModalContent>
         <ModalHeader>Connect to Discord</ModalHeader>
         <ModalCloseButton />
-        <ModalBody>
+        <ModalBody display="flex" flexDir="column">
           <Text colorScheme="gray" fontWeight="semibold" mb={4}>
             Adding the bot and creating the Guild won't change anything on your
             server
           </Text>
-          <FormProvider {...discordMethods}>
-            <DiscordGuildSetup
-              defaultValues={{
-                name: "",
-                description: "",
-                imageUrl: `/guildLogos/${getRandomInt(286)}.svg`,
-                contacts: [{ type: "EMAIL", contact: "" }],
-                guildPlatforms: [
-                  {
-                    platformName: "DISCORD",
-                    platformGuildId: "",
-                  },
-                ],
-              }}
-              selectedServer={selectedServer}
-              fieldName={`discordServerId`}
-            />
-          </FormProvider>
-        </ModalBody>
-        <ModalFooter>
-          <Button
-            colorScheme="green"
-            isDisabled={!selectedServer}
-            onClick={() => {
-              append({
-                platformName: "DISCORD",
-                platformGuildId: discordMethods.getValues("discordServerId"),
-                platformId: PlatformType.DISCORD,
-                platformGuildData: {
-                  name: selectedDiscordServerData.name,
-                  imageUrl: selectedDiscordServerData.img,
-                } as PlatformGuildData["DISCORD"],
-              })
-              onClose()
+          <PermissionAlert mb={4} />
+          <Box
+            overflow="auto"
+            className="invisible-scrollbar"
+            sx={{
+              maskImage:
+                "linear-gradient(to bottom, transparent 0px, black var(--chakra-sizes-4), black calc(100% - var(--chakra-sizes-4)), transparent)",
             }}
+            py={4}
           >
-            Add
-          </Button>
-        </ModalFooter>
+            <DiscordGuildSetup
+              onSubmit={(selected) => {
+                append({
+                  platformName: "DISCORD",
+                  platformGuildId: selected?.id,
+                  platformId: PlatformType.DISCORD,
+                  platformGuildData: {
+                    name: selected?.name,
+                    imageUrl: selected?.img,
+                  } as PlatformGuildData["DISCORD"],
+                })
+                onClose()
+              }}
+            />
+          </Box>
+        </ModalBody>
       </ModalContent>
     </Modal>
   )

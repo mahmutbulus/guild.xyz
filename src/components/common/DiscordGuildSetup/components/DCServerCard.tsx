@@ -1,57 +1,58 @@
-import { usePrevious } from "@chakra-ui/react"
+import useGuild from "components/[guild]/hooks/useGuild"
 import Button from "components/common/Button"
 import CardMotionWrapper from "components/common/CardMotionWrapper"
 import OptionCard from "components/common/OptionCard"
-import usePopupWindow from "hooks/usePopupWindow"
-import useServerData from "hooks/useServerData"
+import { Gateables } from "hooks/useGateables"
+import useServerPermissions from "hooks/useServerPermissions"
 import Link from "next/link"
-import { ArrowSquareIn } from "phosphor-react"
-import usePlatformUsageInfo from "platforms/hooks/usePlatformUsageInfo"
-import { useEffect } from "react"
+import { ArrowSquareOut } from "phosphor-react"
+import { PlatformType } from "types"
 
 type Props = {
-  serverData: {
-    id: string
-    name: string
-    img: string
-    owner: boolean
-  }
-  onSelect?: (id: string) => void
+  serverData: Gateables[PlatformType.DISCORD][number]
+  onSelect?: () => void
   onCancel?: () => void
+  onSubmit?: () => void
+  isLoading?: boolean
+  isSelected?: boolean
 }
 
-const DCServerCard = ({ serverData, onSelect, onCancel }: Props): JSX.Element => {
-  const { onOpen: openAddBotPopup, windowInstance: activeAddBotPopup } =
-    usePopupWindow(
-      `https://discord.com/api/oauth2/authorize?client_id=${process.env.NEXT_PUBLIC_DISCORD_CLIENT_ID}&guild_id=${serverData.id}&permissions=268782673&scope=bot%20applications.commands`
-    )
+const DCServerCard = ({
+  serverData,
+  onSelect: onSelectProp,
+  onCancel,
+  onSubmit,
+  isSelected = false,
+}: Props): JSX.Element => {
+  const { id } = useGuild() ?? {}
 
   const {
-    data: { isAdmin, channels },
+    mutate,
+    isValidating,
+    permissions: existingPermissions,
     error,
-  } = useServerData(serverData.id, {
-    swrOptions: {
-      refreshInterval: !!activeAddBotPopup ? 2000 : 0,
-      refreshWhenHidden: true,
-    },
-  })
+  } = useServerPermissions(serverData?.id)
 
-  const prevActiveAddBotPopup = usePrevious(activeAddBotPopup)
+  const onSelect = async () => {
+    try {
+      if (error) {
+        return
+      }
+      let permissions = existingPermissions
+      if (!permissions) {
+        permissions = await mutate()
+      }
 
-  useEffect(() => {
-    if (!!prevActiveAddBotPopup && !activeAddBotPopup && isAdmin) {
-      onSelect(serverData.id)
+      if (!permissions) return
+      if (permissions.hasAllPermissions && permissions.isRoleOrderOk) {
+        onSubmit()
+      }
+    } finally {
+      onSelectProp()
     }
-  }, [prevActiveAddBotPopup, activeAddBotPopup, isAdmin, onSelect, serverData.id])
+  }
 
-  useEffect(() => {
-    if (channels?.length > 0 && activeAddBotPopup) {
-      activeAddBotPopup.close()
-    }
-  }, [channels, activeAddBotPopup])
-
-  const { isAlreadyInUse, isUsedInCurrentGuild, guildUrlName, isValidating } =
-    usePlatformUsageInfo("DISCORD", serverData.id)
+  const isUsedInCurrentGuild = serverData.isGuilded && serverData.guildId === id
 
   if (isUsedInCurrentGuild) return null
 
@@ -63,36 +64,35 @@ const DCServerCard = ({ serverData, onSelect, onCancel }: Props): JSX.Element =>
         description={serverData.owner ? "Owner" : "Admin"}
         image={serverData.img || "/default_discord_icon.png"}
       >
-        {onCancel ? (
+        {isSelected ? (
           <Button h={10} onClick={onCancel}>
             Cancel
           </Button>
         ) : isValidating ? (
-          <Button h={10} isLoading />
-        ) : !isAdmin || !!error ? (
+          <Button isLoading />
+        ) : serverData.isGuilded ? (
           <Button
+            as={Link}
+            href={`/${serverData.guildId}`}
             h={10}
-            colorScheme="DISCORD"
-            onClick={openAddBotPopup}
-            isLoading={!!activeAddBotPopup}
-            rightIcon={<ArrowSquareIn />}
+            colorScheme="gray"
+            target="_blank"
+            rightIcon={<ArrowSquareOut />}
           >
-            Add bot
+            Linked guild
           </Button>
-        ) : !isAlreadyInUse ? (
+        ) : (
           <Button
             h={10}
             colorScheme="green"
-            onClick={() => onSelect(serverData.id)}
+            onClick={() => {
+              onSelect()
+            }}
             data-test="select-dc-server-button"
           >
             Select
           </Button>
-        ) : isAlreadyInUse ? (
-          <Button as={Link} href={`/${guildUrlName}`} h={10} colorScheme="gray">
-            Go to guild
-          </Button>
-        ) : null}
+        )}
       </OptionCard>
     </CardMotionWrapper>
   )

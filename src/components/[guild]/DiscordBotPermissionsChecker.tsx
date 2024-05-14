@@ -1,4 +1,5 @@
 import {
+  ListItem,
   ModalBody,
   ModalContent,
   ModalFooter,
@@ -7,13 +8,14 @@ import {
   Stack,
   Text,
   ToastId,
+  UnorderedList,
   useDisclosure,
 } from "@chakra-ui/react"
 import Button from "components/common/Button"
 import DiscordRoleVideo from "components/common/DiscordRoleVideo"
 import { Modal } from "components/common/Modal"
 import { ActionToastOptions, useToastWithButton } from "hooks/useToast"
-import { Info } from "phosphor-react"
+import { ArrowSquareOut, Info } from "phosphor-react"
 import { useMemo, useRef, useState } from "react"
 import useSWRImmutable from "swr/immutable"
 import { PlatformType } from "types"
@@ -21,21 +23,24 @@ import fetcher from "utils/fetcher"
 import useGuild from "./hooks/useGuild"
 import useGuildPermission from "./hooks/useGuildPermission"
 
+const MANAGE_ROLES_PERMISSION_NAME = "Manage Roles"
+const MANAGE_SERVER_PERMISSION_NAME = "Manage Server"
+const CREATE_INVITE_PERMISSION_NAME = "Create Invite"
 const GUILD_BOT_ROLE_NAME = "Guild.xyz bot"
 /**
- * Mapping permission names which we get from our backend to actual permission names
- * which the user will be able to find on Discord
+ * If this list changes, make sure to replace the public/discord_permissions.png
+ * image
  */
-const REQUIRED_PERMISSIONS = [
+export const REQUIRED_PERMISSIONS = [
+  MANAGE_ROLES_PERMISSION_NAME,
   "View Channels",
-  "Manage Roles",
-  "Create Invite",
+  MANAGE_SERVER_PERMISSION_NAME,
+  CREATE_INVITE_PERMISSION_NAME,
   "Send Messages",
   "Embed Links",
   "Add Reactions",
   "Use External Emoji",
-  "Read Message History",
-]
+] as const
 
 type DiscordPermissions = {
   permissions: Record<
@@ -65,11 +70,16 @@ const MODAL_CONTENT: Record<
     title: "Setup bot permissions",
     body: (
       <>
-        <Text>
-          {`Our bot requires the ${REQUIRED_PERMISSIONS.join(
-            ", "
-          )} permissions in order to funcion properly`}
-        </Text>
+        <Stack spacing={2} mb={4}>
+          <Text>
+            Our bot requires the following permissions in order to function properly:
+          </Text>
+          <UnorderedList>
+            {REQUIRED_PERMISSIONS.map((permission) => (
+              <ListItem key={permission}>{permission}</ListItem>
+            ))}
+          </UnorderedList>
+        </Stack>
         <video src="/videos/dc-bot-permissions.webm" muted autoPlay loop>
           Your browser does not support the HTML5 video tag.
         </video>
@@ -107,7 +117,7 @@ const DiscordBotPermissionsChecker = () => {
   const fetchDiscordPermissions = () =>
     Promise.all(
       discordRewards?.map((gp) =>
-        fetcher(`/discord/permissions/${gp.platformGuildId}`)
+        fetcher(`/v2/discord/servers/${gp.platformGuildId}/permissions`)
       )
     )
 
@@ -118,6 +128,7 @@ const DiscordBotPermissionsChecker = () => {
     discordRewards.length > 0 && isAdmin ? ["discordPermissions", id] : null,
     fetchDiscordPermissions,
     {
+      shouldRetryOnError: false,
       onSuccess: (data, _key, _config) => {
         if (!!toastIdRef.current) return
 
@@ -137,18 +148,37 @@ const DiscordBotPermissionsChecker = () => {
         }
 
         for (const [index, permissionInfo] of data.entries()) {
-          const serverName = discordRewards[index].platformGuildName
+          const {
+            platformGuildName: serverName,
+            platformGuildData: { invite },
+          } = discordRewards[index]
 
           const permissionsNotGranted = Object.values(
             permissionInfo.permissions
           ).filter((perm) => !perm.value && perm.name !== "Administrator")
 
-          if (permissionsNotGranted.length > 0) {
+          if (
+            // We always need the "Manage Roles" permissions
+            permissionsNotGranted.find(
+              (p) => p.name === MANAGE_ROLES_PERMISSION_NAME
+            ) ||
+            // We need the Manage Server & Create Invite permissions if there's no custom invite
+            (!invite &&
+              permissionsNotGranted.find(
+                (p) =>
+                  p.name === CREATE_INVITE_PERMISSION_NAME ||
+                  p.name === MANAGE_SERVER_PERMISSION_NAME
+              ))
+          ) {
             toastIdRef.current = toastWithButton({
               title: "Missing permissions",
-              description: `We've noticed that the Guild.xyz bot is missing the following permissions on the ${serverName} Discord server: ${permissionsNotGranted
+              description: `${permissionsNotGranted
                 .map((perm) => perm.name)
-                .join(", ")}`,
+                .join(", ")} permission${
+                permissionsNotGranted.length > 1 ? "s are" : " is"
+              } missing for the Guild.xyz bot on ${
+                serverName ? `the ${serverName}` : "your"
+              } Discord server.`,
               ...toastOptions,
             })
             setErrorType("PERMISSIONS")
@@ -196,6 +226,28 @@ const DiscordBotPermissionsChecker = () => {
             setErrorType("ROLE_ORDER")
           }
         }
+      },
+      onError: () => {
+        toastIdRef.current = toastWithButton({
+          status: "warning",
+          title: "Guild.xyz Discord bot is missing",
+          description:
+            "The Guild.xyz bot is not a member of your Discord server, so it won't be able to manage your roles.",
+          duration: null,
+          isClosable: false,
+          buttonProps: {
+            children: "Invite bot",
+            rightIcon: <ArrowSquareOut />,
+            onClick: () =>
+              window.open(
+                `https://discord.com/api/oauth2/authorize?client_id=${process.env.NEXT_PUBLIC_DISCORD_CLIENT_ID}&permissions=268716145&scope=bot%20applications.commands`
+              ),
+          },
+          secondButtonProps: {
+            children: "Later",
+            variant: "ghost",
+          },
+        })
       },
     }
   )

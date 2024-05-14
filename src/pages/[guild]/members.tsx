@@ -100,14 +100,20 @@ const columns = [
         id: "hiddenRoles",
         accessorFn: (row) => row.roles.hidden,
         cell: (info) => (
-          <RoleTags roles={info.getValue()} column={info.column.parent} />
+          <RoleTags
+            roles={info.getValue()}
+            setFilterValue={info.column.parent.setFilterValue}
+          />
         ),
       },
       {
         id: "publicRoles",
         accessorFn: (row) => row.roles.public,
         cell: (info) => (
-          <RoleTags roles={info.getValue()} column={info.column.parent} />
+          <RoleTags
+            roles={info.getValue()}
+            setFilterValue={info.column.parent.setFilterValue}
+          />
         ),
       },
     ],
@@ -124,7 +130,7 @@ const columns = [
   }),
 ]
 
-const GuildPage = (): JSX.Element => {
+const MembersPage = (): JSX.Element => {
   const { textColor, localThemeColor, localBackgroundImage } = useThemeContext()
   const { name, roles, imageUrl } = useGuild()
 
@@ -145,7 +151,9 @@ const GuildPage = (): JSX.Element => {
 
     const path = asPath.split("?")[0]
     replace(`${path}?${queryString}`)
-  }, [isReady, queryString, asPath, replace])
+    // replace is intentionally left out
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isReady, queryString, asPath])
 
   const { data, error, isLoading, isValidating, setSize } = useMembers(queryString)
 
@@ -235,8 +243,8 @@ const GuildPage = (): JSX.Element => {
   )
 }
 
-const GuildPageWrapper = (): JSX.Element => {
-  const { featureFlags, name, error } = useGuild()
+const MembersPageWrapper = (): JSX.Element => {
+  const { featureFlags, error } = useGuild()
   const router = useRouter()
 
   if (error) return <ErrorPage statusCode={404} />
@@ -247,12 +255,12 @@ const GuildPageWrapper = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>{`${name} members`}</title>
-        <meta property="og:title" content={`${name} members`} />
+        <title>Members</title>
+        <meta property="og:title" content="Members" />
       </Head>
-      <ThemeProvider>{router.isReady && <GuildPage />}</ThemeProvider>
+      <ThemeProvider>{router.isReady && <MembersPage />}</ThemeProvider>
     </>
   )
 }
 
-export default GuildPageWrapper
+export default MembersPageWrapper

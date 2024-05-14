@@ -3,6 +3,7 @@ import useGuild from "components/[guild]/hooks/useGuild"
 import useRoleGroup from "components/[guild]/hooks/useRoleGroup"
 import useJsConfetti from "components/create-guild/hooks/useJsConfetti"
 import { useYourGuilds } from "components/explorer/YourGuilds"
+import useCustomPosthogEvents from "hooks/useCustomPosthogEvents"
 import useMatchMutate from "hooks/useMatchMutate"
 import useShowErrorToast from "hooks/useShowErrorToast"
 import { SignedValidation, useSubmitWithSign } from "hooks/useSubmit"
@@ -20,14 +21,24 @@ export type RoleToCreate = Omit<
   requirements: Omit<Requirement, "id" | "roleId" | "name" | "symbol">[]
 }
 
-type CreateRoleResponse = Role & { createdGuildPlatforms?: GuildPlatform[] }
+type CreateRoleResponse = Role & {
+  createdGuildPlatforms?: GuildPlatform[]
+  requirements?: Requirement[]
+}
 
-const useCreateRole = ({ onSuccess }: { onSuccess?: () => void }) => {
+const useCreateRole = ({
+  onSuccess,
+  onError,
+}: {
+  onSuccess?: () => void
+  onError?: (error) => void
+}) => {
   const { id, mutateGuild } = useGuild()
   const group = useRoleGroup()
 
   const { mutate: mutateYourGuilds } = useYourGuilds()
   const matchMutate = useMatchMutate()
+  const { rewardCreated } = useCustomPosthogEvents()
 
   const showErrorToast = useShowErrorToast()
   const triggerConfetti = useJsConfetti()
@@ -38,13 +49,21 @@ const useCreateRole = ({ onSuccess }: { onSuccess?: () => void }) => {
     fetcher(`/v2/guilds/${id}/roles`, signedValidation)
 
   const useSubmitResponse = useSubmitWithSign<CreateRoleResponse>(fetchData, {
-    onError: (error_) =>
+    onError: (error_) => {
       showErrorToast({
         error: processConnectorError(error_.error) ?? error_.error,
         correlationId: error_.correlationId,
-      }),
+      })
+      onError?.(error_)
+    },
     onSuccess: async (response_) => {
       triggerConfetti()
+
+      if (response_?.createdGuildPlatforms?.length > 0) {
+        response_.createdGuildPlatforms.forEach((guildPlatform) => {
+          rewardCreated(guildPlatform.platformId)
+        })
+      }
 
       mutateYourGuilds((prev) => mutateGuildsCache(prev, id), {
         revalidate: false,
