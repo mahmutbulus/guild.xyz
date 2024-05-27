@@ -89,7 +89,10 @@ const columns = [
                 })`}
           </Text>
           <HStack spacing="0">
-            <FilterByRoles column={column} />
+            <FilterByRoles
+              getFilterValue={column.getFilterValue}
+              setFilterValue={column.setFilterValue}
+            />
             <OrderByColumn label="Number of roles" column={column} />
           </HStack>
         </HStack>
@@ -150,16 +153,16 @@ const MembersPage = (): JSX.Element => {
     if (!isReady || !queryString) return
 
     const path = asPath.split("?")[0]
-    replace(`${path}?${queryString}`)
+    replace(`${path}?${queryString}`, null, { scroll: false })
     // replace is intentionally left out
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isReady, queryString, asPath])
 
   const { data, error, isLoading, isValidating, setSize } = useMembers(queryString)
 
-  // TODO: keep row selection when the data changes. Right now we just reset the selection
   const handleSetColumnFilters = (props) => {
     setRowSelection({})
+    setSize(1)
     setColumnFilters(props)
   }
   const handleSetSorting = (props) => {
