@@ -1,5 +1,5 @@
 import { Tooltip } from "@chakra-ui/react"
-import { ArrowSquareOut } from "@phosphor-icons/react"
+import { ArrowSquareOut } from "@phosphor-icons/react/dist/ssr"
 import useGuild from "components/[guild]/hooks/useGuild"
 import Button from "components/common/Button"
 import { claimTextButtonTooltipLabel } from "rewards/SecretText/TextCardButton"

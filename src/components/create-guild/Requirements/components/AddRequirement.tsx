@@ -20,7 +20,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react"
 import { Schemas, schemas } from "@guildxyz/types"
-import { ArrowLeft, CaretRight } from "@phosphor-icons/react"
+import { ArrowLeft, CaretRight } from "@phosphor-icons/react/dist/ssr"
 import useGuild from "components/[guild]/hooks/useGuild"
 import AddCard from "components/common/AddCard"
 import Button from "components/common/Button"

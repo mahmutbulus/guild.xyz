@@ -1,4 +1,4 @@
-import { ArrowSquareOut } from "@phosphor-icons/react"
+import { ArrowSquareOut } from "@phosphor-icons/react/dist/ssr"
 import { useActivityLog } from "components/[guild]/activity/ActivityLogContext"
 import useGuild from "components/[guild]/hooks/useGuild"
 import Button from "components/common/Button"

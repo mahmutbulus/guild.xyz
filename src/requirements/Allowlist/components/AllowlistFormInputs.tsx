@@ -9,7 +9,7 @@ import {
   Textarea,
   Tooltip,
 } from "@chakra-ui/react"
-import { ArrowCounterClockwise, Check, File } from "@phosphor-icons/react"
+import { ArrowCounterClockwise, Check, File } from "@phosphor-icons/react/dist/ssr"
 import { isValidAddress } from "components/[guild]/EditGuild/components/Admins/Admins"
 import Button from "components/common/Button"
 import FormErrorMessage from "components/common/FormErrorMessage"

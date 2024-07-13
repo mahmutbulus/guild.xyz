@@ -18,7 +18,7 @@ import {
   CalendarCheck,
   CaretDown,
   TrashSimple,
-} from "@phosphor-icons/react"
+} from "@phosphor-icons/react/dist/ssr"
 import Button from "components/common/Button"
 import { ChangeEvent } from "react"
 import { useActivityLog } from "../../ActivityLogContext"

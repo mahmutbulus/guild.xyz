@@ -13,7 +13,7 @@ import {
   Text,
   Tooltip,
 } from "@chakra-ui/react"
-import { Clock, Hash } from "@phosphor-icons/react"
+import { Clock, Hash } from "@phosphor-icons/react/dist/ssr"
 import Button from "components/common/Button"
 import CheckboxColorCard from "components/common/CheckboxColorCard"
 import { Modal } from "components/common/Modal"

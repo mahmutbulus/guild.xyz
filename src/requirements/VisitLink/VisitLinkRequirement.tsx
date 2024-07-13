@@ -14,7 +14,7 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react"
-import { ArrowSquareOut, Link as LinkIcon } from "@phosphor-icons/react"
+import { ArrowSquareOut, Link as LinkIcon } from "@phosphor-icons/react/dist/ssr"
 import useMembershipUpdate from "components/[guild]/JoinModal/hooks/useMembershipUpdate"
 import Requirement, {
   RequirementProps,

@@ -1,5 +1,5 @@
 import { HStack, Icon, Stack, Tooltip } from "@chakra-ui/react"
-import { Check, Question } from "@phosphor-icons/react"
+import { Check, Question } from "@phosphor-icons/react/dist/ssr"
 import Button from "components/common/Button"
 import useTriggerNetworkChange from "hooks/useTriggerNetworkChange"
 import { useEffect } from "react"

@@ -7,7 +7,13 @@ import {
   useBreakpointValue,
   useColorModeValue,
 } from "@chakra-ui/react"
-import { CaretDown, Check, LockSimple, Warning, X } from "@phosphor-icons/react"
+import {
+  CaretDown,
+  Check,
+  LockSimple,
+  Warning,
+  X,
+} from "@phosphor-icons/react/dist/ssr"
 import { useOpenJoinModal } from "components/[guild]/JoinModal/JoinModalProvider"
 import RecheckAccessesButton from "components/[guild]/RecheckAccessesButton"
 import { useRequirementErrorConfig } from "components/[guild]/Requirements/RequirementErrorConfigContext"

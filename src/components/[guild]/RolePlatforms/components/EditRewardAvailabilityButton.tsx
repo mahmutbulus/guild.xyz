@@ -1,5 +1,5 @@
 import { IconButton } from "@chakra-ui/react"
-import { Clock, GearSix } from "@phosphor-icons/react"
+import { Clock, GearSix } from "@phosphor-icons/react/dist/ssr"
 import Button from "components/common/Button"
 
 type Props = {

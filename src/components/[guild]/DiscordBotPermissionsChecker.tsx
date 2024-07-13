@@ -11,7 +11,7 @@ import {
   UnorderedList,
   useDisclosure,
 } from "@chakra-ui/react"
-import { ArrowSquareOut, Info } from "@phosphor-icons/react"
+import { ArrowSquareOut, Info } from "@phosphor-icons/react/dist/ssr"
 import Button from "components/common/Button"
 import DiscordRoleVideo from "components/common/DiscordRoleVideo"
 import { Modal } from "components/common/Modal"

@@ -1,5 +1,5 @@
 import { MenuDivider, MenuItem, useDisclosure } from "@chakra-ui/react"
-import { ChatDots, Link } from "@phosphor-icons/react"
+import { ChatDots, Link } from "@phosphor-icons/react/dist/ssr"
 import RemovePlatformMenuItem from "components/[guild]/AccessHub/components/RemovePlatformMenuItem"
 import SendDiscordJoinButtonModal from "components/[guild]/Onboarding/components/SummonMembers/components/SendDiscordJoinButtonModal"
 import PlatformCardMenu from "components/[guild]/RolePlatforms/components/PlatformCard/components/PlatformCardMenu"

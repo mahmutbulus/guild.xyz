@@ -11,7 +11,7 @@ import {
   Text,
   Tooltip,
 } from "@chakra-ui/react"
-import { Question } from "@phosphor-icons/react"
+import { Question } from "@phosphor-icons/react/dist/ssr"
 import Button from "components/common/Button"
 import FormErrorMessage from "components/common/FormErrorMessage"
 import { useState } from "react"

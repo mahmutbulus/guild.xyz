@@ -1,5 +1,5 @@
 import { IconButton } from "@chakra-ui/react"
-import { GearSix } from "@phosphor-icons/react"
+import { GearSix } from "@phosphor-icons/react/dist/ssr"
 import { useThemeContext } from "../ThemeContext"
 import { useEditGuildDrawer } from "./EditGuildDrawerContext"
 

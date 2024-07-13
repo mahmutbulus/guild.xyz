@@ -13,7 +13,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react"
 import { Visibility } from "@guildxyz/types"
-import { ArrowLeft, Info } from "@phosphor-icons/react"
+import { ArrowLeft, Info } from "@phosphor-icons/react/dist/ssr"
 import Button from "components/common/Button"
 import useJsConfetti from "components/create-guild/hooks/useJsConfetti"
 import useCreateRRR, { SubmitData } from "hooks/useCreateRRR"

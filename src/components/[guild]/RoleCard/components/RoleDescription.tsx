@@ -6,7 +6,7 @@ import {
   Icon,
   useColorModeValue,
 } from "@chakra-ui/react"
-import { ArrowDown, ArrowUp } from "@phosphor-icons/react"
+import { ArrowDown, ArrowUp } from "@phosphor-icons/react/dist/ssr"
 import Button from "components/common/Button"
 import { useEffect, useState } from "react"
 import parseDescription from "utils/parseDescription"

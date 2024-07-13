@@ -6,7 +6,7 @@ import {
   Portal,
   useClipboard,
 } from "@chakra-ui/react"
-import { CopySimple, ShareNetwork } from "@phosphor-icons/react"
+import { CopySimple, ShareNetwork } from "@phosphor-icons/react/dist/ssr"
 import { useThemeContext } from "components/[guild]/ThemeContext"
 import Button from "components/common/Button"
 import XLogo from "static/icons/x.svg"

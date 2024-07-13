@@ -15,7 +15,7 @@ import {
   forwardRef,
   useColorModeValue,
 } from "@chakra-ui/react"
-import { Funnel } from "@phosphor-icons/react"
+import { Funnel } from "@phosphor-icons/react/dist/ssr"
 import Button from "components/common/Button"
 import { memo } from "react"
 import { Role } from "types"

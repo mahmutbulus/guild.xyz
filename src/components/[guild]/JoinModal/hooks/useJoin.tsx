@@ -1,5 +1,5 @@
 import { JoinJob } from "@guildxyz/types"
-import { CircleWavyCheck } from "@phosphor-icons/react"
+import { CircleWavyCheck } from "@phosphor-icons/react/dist/ssr"
 import { GUILD_PIN_MAINTENANCE } from "components/[guild]/Requirements/components/GuildCheckout/MintGuildPin/MintGuildPin"
 import { useMintGuildPinContext } from "components/[guild]/Requirements/components/GuildCheckout/MintGuildPinContext"
 import useGuild from "components/[guild]/hooks/useGuild"

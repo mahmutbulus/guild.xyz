@@ -14,7 +14,7 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react"
-import { Check, Gift } from "@phosphor-icons/react"
+import { Check, Gift } from "@phosphor-icons/react/dist/ssr"
 import Button from "components/common/Button"
 import Card from "components/common/Card"
 import CardMotionWrapper from "components/common/CardMotionWrapper"

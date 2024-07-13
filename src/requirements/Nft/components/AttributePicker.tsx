@@ -8,7 +8,7 @@ import {
   Stack,
   useColorModeValue,
 } from "@chakra-ui/react"
-import { Plus, TrashSimple, X } from "@phosphor-icons/react"
+import { Plus, TrashSimple, X } from "@phosphor-icons/react/dist/ssr"
 import Button from "components/common/Button"
 import ControlledSelect from "components/common/ControlledSelect"
 import FormErrorMessage from "components/common/FormErrorMessage"

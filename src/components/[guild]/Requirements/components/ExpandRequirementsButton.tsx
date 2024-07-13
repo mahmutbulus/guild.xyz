@@ -1,6 +1,6 @@
 import { Divider, Flex, Icon, useColorMode } from "@chakra-ui/react"
 import { Logic } from "@guildxyz/types"
-import { ArrowDown, ArrowUp } from "@phosphor-icons/react"
+import { ArrowDown, ArrowUp } from "@phosphor-icons/react/dist/ssr"
 import { formattedLogic } from "components/[guild]/LogicDivider"
 import Button from "components/common/Button"
 

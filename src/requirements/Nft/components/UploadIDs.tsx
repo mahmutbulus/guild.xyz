@@ -1,4 +1,4 @@
-import { File } from "@phosphor-icons/react"
+import { File } from "@phosphor-icons/react/dist/ssr"
 import Button from "components/common/Button"
 import useDropzone from "hooks/useDropzone"
 

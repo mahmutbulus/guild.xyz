@@ -5,7 +5,7 @@ import {
   NumberSquareFive,
   RadioButton,
   Textbox,
-} from "@phosphor-icons/react"
+} from "@phosphor-icons/react/dist/ssr"
 import OptionIcon from "components/common/StyledSelect/components/CustomSelectOption/components/OptionIcon"
 import { ComponentType, ReactNode } from "react"
 import {

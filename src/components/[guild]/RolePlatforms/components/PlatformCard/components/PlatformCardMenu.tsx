@@ -1,5 +1,5 @@
 import { IconButton, Menu, MenuButton, MenuList, Portal } from "@chakra-ui/react"
-import { DotsThree } from "@phosphor-icons/react"
+import { DotsThree } from "@phosphor-icons/react/dist/ssr"
 import { PropsWithChildren } from "react"
 
 const PlatformCardMenu = ({ children }: PropsWithChildren<unknown>) => (

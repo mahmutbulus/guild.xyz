@@ -1,5 +1,5 @@
 import { Icon, Spinner, Tooltip } from "@chakra-ui/react"
-import { ArrowSquareIn, LockSimple } from "@phosphor-icons/react"
+import { ArrowSquareIn, LockSimple } from "@phosphor-icons/react/dist/ssr"
 import { useOpenJoinModal } from "components/[guild]/JoinModal/JoinModalProvider"
 import DynamicTag from "components/[guild]/RoleCard/components/DynamicReward/DynamicTag"
 import { RewardIcon } from "components/[guild]/RoleCard/components/Reward"

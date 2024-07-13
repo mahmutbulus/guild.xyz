@@ -8,7 +8,7 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react"
-import { ArrowsClockwise, Lightning } from "@phosphor-icons/react"
+import { ArrowsClockwise, Lightning } from "@phosphor-icons/react/dist/ssr"
 import { useRequirementHandlerContext } from "components/[guild]/RequirementHandlerContext"
 import RequirementDisplayComponent from "components/[guild]/Requirements/components/RequirementDisplayComponent"
 import AddCard from "components/common/AddCard"

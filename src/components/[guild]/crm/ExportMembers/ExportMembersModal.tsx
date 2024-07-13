@@ -9,7 +9,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react"
-import { ArchiveBox } from "@phosphor-icons/react"
+import { ArchiveBox } from "@phosphor-icons/react/dist/ssr"
 import Button from "components/common/Button"
 import { Modal } from "components/common/Modal"
 import { SectionTitle } from "components/common/Section"

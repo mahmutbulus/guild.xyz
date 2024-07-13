@@ -1,5 +1,5 @@
 import { ButtonProps, IconButton, Tooltip } from "@chakra-ui/react"
-import { Flag } from "@phosphor-icons/react"
+import { Flag } from "@phosphor-icons/react/dist/ssr"
 import Button from "components/common/Button"
 import { useEffect } from "react"
 import { addIntercomSettings } from "utils/intercom"

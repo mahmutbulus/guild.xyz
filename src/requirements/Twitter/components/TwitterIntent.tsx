@@ -1,5 +1,6 @@
 import { Icon, Link } from "@chakra-ui/react"
-import { Heart, type IconProps, Share, UserPlus } from "@phosphor-icons/react"
+import type { IconProps } from "@phosphor-icons/react"
+import { Heart, Share, UserPlus } from "@phosphor-icons/react/dist/ssr"
 import useMembershipUpdate from "components/[guild]/JoinModal/hooks/useMembershipUpdate"
 import { useRequirementContext } from "components/[guild]/Requirements/components/RequirementContext"
 import useUser from "components/[guild]/hooks/useUser"

@@ -1,5 +1,5 @@
 import { Circle, Icon, Spinner, Text } from "@chakra-ui/react"
-import { Upload, X } from "@phosphor-icons/react"
+import { Upload, X } from "@phosphor-icons/react/dist/ssr"
 import { env } from "env"
 import usePinata from "hooks/usePinata"
 import useShowErrorToast from "hooks/useShowErrorToast"

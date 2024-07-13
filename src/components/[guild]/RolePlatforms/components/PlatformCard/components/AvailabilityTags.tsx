@@ -7,7 +7,7 @@ import {
   Wrap,
   WrapProps,
 } from "@chakra-ui/react"
-import { Clock } from "@phosphor-icons/react"
+import { Clock } from "@phosphor-icons/react/dist/ssr"
 import { PropsWithChildren, useState } from "react"
 import { RolePlatform } from "types"
 import formatRelativeTimeFromNow, {

@@ -15,7 +15,7 @@ import * as combobox from "@zag-js/combobox"
 import { normalizeProps, useMachine } from "@zag-js/react"
 import ActivityLogRoleTag from "../../../ActivityLogAction/components/ActivityLogRoleTag"
 
-import { Warning, X } from "@phosphor-icons/react"
+import { Warning, X } from "@phosphor-icons/react/dist/ssr"
 import FormTag from "components/[guild]/activity/ActivityLogAction/components/FormTag"
 import GuildTag from "components/[guild]/activity/ActivityLogAction/components/GuildTag"
 import { useActivityLog } from "components/[guild]/activity/ActivityLogContext"

@@ -10,7 +10,7 @@ import {
   Stack,
   useColorModeValue,
 } from "@chakra-ui/react"
-import { DotsSixVertical } from "@phosphor-icons/react"
+import { DotsSixVertical } from "@phosphor-icons/react/dist/ssr"
 import { Column, Table } from "@tanstack/react-table"
 import { Modal } from "components/common/Modal"
 import { Reorder } from "framer-motion"

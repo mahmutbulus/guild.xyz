@@ -1,5 +1,5 @@
 import { Icon, Text, useColorModeValue, useDisclosure } from "@chakra-ui/react"
-import { ArrowSquareOut, Star } from "@phosphor-icons/react"
+import { ArrowSquareOut, Star } from "@phosphor-icons/react/dist/ssr"
 import DynamicRewardSetup from "components/[guild]/RolePlatforms/components/AddRoleRewardModal/components/DynamicSetup/DynamicRewardSetup"
 import { useEditRolePlatformContext } from "components/[guild]/RolePlatforms/components/EditRolePlatformModal"
 import Button from "components/common/Button"

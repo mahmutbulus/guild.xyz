@@ -15,16 +15,16 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react"
+import type { IconProps } from "@phosphor-icons/react"
 import {
   ArrowSquareIn,
   CaretDown,
   Check,
   DotsThree,
-  IconProps,
   LockSimple,
   Warning,
   X,
-} from "@phosphor-icons/react"
+} from "@phosphor-icons/react/dist/ssr"
 import RecheckAccessesButton from "components/[guild]/RecheckAccessesButton"
 import useGuild from "components/[guild]/hooks/useGuild"
 import useRequirements from "components/[guild]/hooks/useRequirements"

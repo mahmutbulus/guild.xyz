@@ -23,7 +23,7 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react"
-import { Lightning, PencilSimple, Question } from "@phosphor-icons/react"
+import { Lightning, PencilSimple, Question } from "@phosphor-icons/react/dist/ssr"
 import RequirementDisplayComponent from "components/[guild]/Requirements/components/RequirementDisplayComponent"
 import useGuildPermission from "components/[guild]/hooks/useGuildPermission"
 import Card from "components/common/Card"

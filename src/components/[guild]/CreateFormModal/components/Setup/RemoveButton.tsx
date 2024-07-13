@@ -1,5 +1,5 @@
 import { IconButton, IconButtonProps } from "@chakra-ui/react"
-import { X } from "@phosphor-icons/react"
+import { X } from "@phosphor-icons/react/dist/ssr"
 
 const RemoveButton = (
   props: Omit<

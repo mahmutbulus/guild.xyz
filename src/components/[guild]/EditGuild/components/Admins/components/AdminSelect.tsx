@@ -1,5 +1,5 @@
 import { HStack, Icon, forwardRef } from "@chakra-ui/react"
-import { Warning } from "@phosphor-icons/react"
+import { Warning } from "@phosphor-icons/react/dist/ssr"
 import {
   CreatableSelect,
   GroupBase,

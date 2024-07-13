@@ -9,7 +9,7 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react"
-import { PencilSimple, TrashSimple } from "@phosphor-icons/react"
+import { PencilSimple, TrashSimple } from "@phosphor-icons/react/dist/ssr"
 import PlatformCardMenu from "components/[guild]/RolePlatforms/components/PlatformCard/components/PlatformCardMenu"
 import Button from "components/common/Button"
 import { Alert } from "components/common/Modal"

@@ -1,5 +1,5 @@
 import { HStack, Icon, Skeleton, Td, Text, Tooltip, Tr } from "@chakra-ui/react"
-import { Info, Question } from "@phosphor-icons/react"
+import { Info, Question } from "@phosphor-icons/react/dist/ssr"
 import useTokenData from "hooks/useTokenData"
 import { GUILD_FEE_PERCENTAGE, NULL_ADDRESS } from "utils/guildCheckout/constants"
 import { formatUnits } from "viem"

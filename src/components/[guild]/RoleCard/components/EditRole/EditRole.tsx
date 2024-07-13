@@ -11,7 +11,7 @@ import {
   VStack,
   useDisclosure,
 } from "@chakra-ui/react"
-import { PencilSimple } from "@phosphor-icons/react"
+import { PencilSimple } from "@phosphor-icons/react/dist/ssr"
 import { ApiRequirementHandlerProvider } from "components/[guild]/RequirementHandlerContext"
 import useGuild from "components/[guild]/hooks/useGuild"
 import DiscardAlert from "components/common/DiscardAlert"

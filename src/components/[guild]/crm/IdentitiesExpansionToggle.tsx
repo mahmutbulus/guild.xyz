@@ -2,7 +2,7 @@ import { IconButton } from "@chakra-ui/react"
 import {
   ArrowsInLineHorizontal,
   ArrowsOutLineHorizontal,
-} from "@phosphor-icons/react"
+} from "@phosphor-icons/react/dist/ssr"
 import useLocalStorage from "hooks/useLocalStorage"
 
 export const IDENTITIES_COLLAPSED_STYLE = `.identityTd .identityTag:not(:first-child) {margin-left: var(--stacked-margin-left)}`

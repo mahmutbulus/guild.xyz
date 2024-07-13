@@ -1,5 +1,5 @@
 import { Alert, AlertIcon, HStack, IconButton, Text } from "@chakra-ui/react"
-import { X } from "@phosphor-icons/react"
+import { X } from "@phosphor-icons/react/dist/ssr"
 import { useRouter } from "next/router"
 import { PropsWithChildren } from "react"
 

@@ -9,7 +9,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react"
-import { Image } from "@phosphor-icons/react"
+import { Image } from "@phosphor-icons/react/dist/ssr"
 import TiltCard from "components/[guild]/collect/components/TiltCard"
 import Button from "components/common/Button"
 import FormErrorMessage from "components/common/FormErrorMessage"

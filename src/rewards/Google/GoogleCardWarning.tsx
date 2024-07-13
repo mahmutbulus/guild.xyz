@@ -7,7 +7,7 @@ import {
   PopoverTrigger,
   Portal,
 } from "@chakra-ui/react"
-import { WarningCircle } from "@phosphor-icons/react"
+import { WarningCircle } from "@phosphor-icons/react/dist/ssr"
 import useGuild from "components/[guild]/hooks/useGuild"
 import { GuildPlatform } from "types"
 

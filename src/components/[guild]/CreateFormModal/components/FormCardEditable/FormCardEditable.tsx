@@ -14,7 +14,7 @@ import {
   Tooltip,
 } from "@chakra-ui/react"
 import { Schemas } from "@guildxyz/types"
-import { DotsSixVertical, PencilSimple, Trash } from "@phosphor-icons/react"
+import { DotsSixVertical, PencilSimple, Trash } from "@phosphor-icons/react/dist/ssr"
 import { CreateForm } from "components/[guild]/RolePlatforms/components/AddRoleRewardModal/components/AddFormPanel"
 import Button from "components/common/Button"
 import Card from "components/common/Card"

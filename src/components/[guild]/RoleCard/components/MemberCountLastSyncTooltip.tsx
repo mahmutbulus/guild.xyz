@@ -7,7 +7,7 @@ import {
   Portal,
   TagRightIcon,
 } from "@chakra-ui/react"
-import { Info, UserSwitch } from "@phosphor-icons/react"
+import { Info, UserSwitch } from "@phosphor-icons/react/dist/ssr"
 import Button from "components/common/Button"
 import useShowErrorToast from "hooks/useShowErrorToast"
 import useSubmit from "hooks/useSubmit"

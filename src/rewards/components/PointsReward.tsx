@@ -1,6 +1,6 @@
 import { Link } from "@chakra-ui/next-js"
 import { Icon, Tooltip, useColorModeValue } from "@chakra-ui/react"
-import { ArrowRight, Check } from "@phosphor-icons/react"
+import { ArrowRight, Check } from "@phosphor-icons/react/dist/ssr"
 import DynamicTag from "components/[guild]/RoleCard/components/DynamicReward/DynamicTag"
 import { RewardIcon } from "components/[guild]/RoleCard/components/Reward"
 import { RewardDisplay } from "components/[guild]/RoleCard/components/RewardDisplay"

@@ -1,5 +1,5 @@
 import { Icon, Text, useDisclosure } from "@chakra-ui/react"
-import { ArrowSquareIn } from "@phosphor-icons/react"
+import { ArrowSquareIn } from "@phosphor-icons/react/dist/ssr"
 import Requirement, {
   RequirementProps,
 } from "components/[guild]/Requirements/components/Requirement"

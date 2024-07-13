@@ -1,5 +1,5 @@
 import { Icon, Tooltip, useColorModeValue } from "@chakra-ui/react"
-import { CircleWavyCheck, Question } from "@phosphor-icons/react"
+import { CircleWavyCheck, Question } from "@phosphor-icons/react/dist/ssr"
 import { useMintGuildPinContext } from "components/[guild]/Requirements/components/GuildCheckout/MintGuildPinContext"
 import useGuild from "components/[guild]/hooks/useGuild"
 import useGuildPermission from "components/[guild]/hooks/useGuildPermission"

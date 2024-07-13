@@ -11,7 +11,12 @@ import {
   Wrap,
   useClipboard,
 } from "@chakra-ui/react"
-import { Copy, DownloadSimple, Question, Warning } from "@phosphor-icons/react"
+import {
+  Copy,
+  DownloadSimple,
+  Question,
+  Warning,
+} from "@phosphor-icons/react/dist/ssr"
 import Button from "components/common/Button"
 import useBalancy from "../hooks/useBalancy"
 

@@ -1,6 +1,6 @@
 import { IconButton, theme, useColorModeValue } from "@chakra-ui/react"
 import { transparentize } from "@chakra-ui/theme-tools"
-import { Check, Copy } from "@phosphor-icons/react"
+import { Check, Copy } from "@phosphor-icons/react/dist/ssr"
 import { GroupBase, IndicatorsContainerProps, components } from "chakra-react-select"
 import { useState } from "react"
 import parseFromObject from "utils/parseFromObject"

@@ -9,7 +9,7 @@ import {
   MenuList,
   useDisclosure,
 } from "@chakra-ui/react"
-import { CaretDown, ListNumbers, Plus } from "@phosphor-icons/react"
+import { CaretDown, ListNumbers, Plus } from "@phosphor-icons/react/dist/ssr"
 import Button from "components/common/Button"
 import useIsStuck from "hooks/useIsStuck"
 import { useEffect, useRef } from "react"

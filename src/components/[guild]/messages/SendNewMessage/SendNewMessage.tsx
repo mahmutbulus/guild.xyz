@@ -17,7 +17,7 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react"
-import { Chat, PaperPlaneRight } from "@phosphor-icons/react"
+import { Chat, PaperPlaneRight } from "@phosphor-icons/react/dist/ssr"
 import { useIsTabsStuck } from "components/[guild]/Tabs"
 import { useThemeContext } from "components/[guild]/ThemeContext"
 import Button from "components/common/Button"

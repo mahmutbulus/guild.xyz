@@ -1,5 +1,5 @@
 import { Center, Icon, Text, Wrap } from "@chakra-ui/react"
-import { ArrowLeft, ArrowRight } from "@phosphor-icons/react"
+import { ArrowLeft, ArrowRight } from "@phosphor-icons/react/dist/ssr"
 import rewards from "rewards"
 import capitalize from "utils/capitalize"
 import { useActivityLog } from "../../ActivityLogContext"

@@ -6,7 +6,7 @@ import {
   InputLeftElement,
   InputRightElement,
 } from "@chakra-ui/react"
-import { MagnifyingGlass } from "@phosphor-icons/react"
+import { MagnifyingGlass } from "@phosphor-icons/react/dist/ssr"
 import { Dispatch, SetStateAction, useRef } from "react"
 
 type Props = {

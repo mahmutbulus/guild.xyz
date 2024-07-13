@@ -20,7 +20,7 @@ import {
 } from "@chakra-ui/react"
 // @ts-ignore: fetched from prive sources, prevents successful build
 import type { RawPrivateKey, Waas } from "@coinbase/waas-sdk-web"
-import { Check, Copy, Wallet } from "@phosphor-icons/react"
+import { Check, Copy, Wallet } from "@phosphor-icons/react/dist/ssr"
 import Button from "components/common/Button"
 import { Modal } from "components/common/Modal"
 import ConfirmationAlert from "components/create-guild/Requirements/components/ConfirmationAlert"

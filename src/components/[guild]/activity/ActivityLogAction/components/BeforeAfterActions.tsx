@@ -8,7 +8,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react"
-import { ArrowRight } from "@phosphor-icons/react"
+import { ArrowRight } from "@phosphor-icons/react/dist/ssr"
 import RequirementDisplayComponent from "components/[guild]/Requirements/components/RequirementDisplayComponent"
 import GuildLogo from "components/common/GuildLogo"
 import useColorPalette from "hooks/useColorPalette"

@@ -32,7 +32,7 @@ import {
   Hash,
   Plus,
   TrashSimple,
-} from "@phosphor-icons/react"
+} from "@phosphor-icons/react/dist/ssr"
 import StartEndTimeForm from "components/[guild]/RolePlatforms/components/EditRewardAvailabilityModal/components/StartEndTimeForm"
 import useGuildFee from "components/[guild]/collect/hooks/useGuildFee"
 import Button from "components/common/Button"

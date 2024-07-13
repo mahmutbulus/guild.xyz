@@ -25,12 +25,12 @@ import {
 } from "@lexical/rich-text"
 import { $isAtNodeEnd, $wrapNodes } from "@lexical/selection"
 import { $getNearestNodeOfType, mergeRegister } from "@lexical/utils"
+import type { IconProps } from "@phosphor-icons/react"
 import {
   ArrowClockwise,
   ArrowCounterClockwise,
   Check,
   Code,
-  IconProps,
   ListBullets,
   ListNumbers,
   Quotes,
@@ -39,7 +39,7 @@ import {
   TextHTwo,
   TextItalic,
   TextT,
-} from "@phosphor-icons/react"
+} from "@phosphor-icons/react/dist/ssr"
 import Button from "components/common/Button"
 import {
   $createParagraphNode,

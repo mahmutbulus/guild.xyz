@@ -12,7 +12,7 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react"
-import { CaretDown, Plus } from "@phosphor-icons/react"
+import { CaretDown, Plus } from "@phosphor-icons/react/dist/ssr"
 import CreateCampaignModal from "components/[guild]/CreateCampaignModal"
 import AddSolutionsButton from "solutions/components/AddSolutionsButton"
 import { useIsTabsStuck } from "./Tabs"

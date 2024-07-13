@@ -7,7 +7,7 @@ import {
   forwardRef,
   useColorModeValue,
 } from "@chakra-ui/react"
-import { DotsThreeVertical } from "@phosphor-icons/react"
+import { DotsThreeVertical } from "@phosphor-icons/react/dist/ssr"
 import GuildAvatar from "components/common/GuildAvatar"
 import useSWRImmutable from "swr/immutable"
 import shortenHex from "utils/shortenHex"

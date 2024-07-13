@@ -6,7 +6,7 @@ import {
   Wrap,
   useColorModeValue,
 } from "@chakra-ui/react"
-import { CaretDown, X } from "@phosphor-icons/react"
+import { CaretDown, X } from "@phosphor-icons/react/dist/ssr"
 import * as combobox from "@zag-js/combobox"
 import { normalizeProps, useMachine } from "@zag-js/react"
 import { KeyboardEvent, useEffect, useRef, useState } from "react"

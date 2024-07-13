@@ -1,5 +1,5 @@
 import { HStack, Icon, Skeleton, Td, Text, Tr } from "@chakra-ui/react"
-import { LockSimple, X } from "@phosphor-icons/react"
+import { LockSimple, X } from "@phosphor-icons/react/dist/ssr"
 import FeesTable from "components/[guild]/Requirements/components/GuildCheckout/components/FeesTable"
 import OptionImage from "components/common/StyledSelect/components/CustomSelectOption/components/OptionImage"
 import { REQUIREMENT_PROVIDED_VALUES } from "requirements/requirementProvidedValues"
