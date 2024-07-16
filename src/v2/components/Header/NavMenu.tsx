@@ -1,22 +1,20 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import {
-  Book,
-  Code,
-  DiscordLogo,
-  File,
-  House,
-  Info,
-  List,
-  Package,
-  Palette,
-  Plus,
-  SealCheck,
-  Shield,
-  UsersThree,
-  XLogo,
-} from "@phosphor-icons/react/dist/ssr"
+import { Book } from "@phosphor-icons/react/dist/ssr/Book"
+import { Code } from "@phosphor-icons/react/dist/ssr/Code"
+import { DiscordLogo } from "@phosphor-icons/react/dist/ssr/DiscordLogo"
+import { File } from "@phosphor-icons/react/dist/ssr/File"
+import { House } from "@phosphor-icons/react/dist/ssr/House"
+import { Info } from "@phosphor-icons/react/dist/ssr/Info"
+import { List } from "@phosphor-icons/react/dist/ssr/List"
+import { Package } from "@phosphor-icons/react/dist/ssr/Package"
+import { Palette } from "@phosphor-icons/react/dist/ssr/Palette"
+import { Plus } from "@phosphor-icons/react/dist/ssr/Plus"
+import { SealCheck } from "@phosphor-icons/react/dist/ssr/SealCheck"
+import { Shield } from "@phosphor-icons/react/dist/ssr/Shield"
+import { UsersThree } from "@phosphor-icons/react/dist/ssr/UsersThree"
+import { XLogo } from "@phosphor-icons/react/dist/ssr/XLogo"
 import dynamic from "next/dynamic"
 import Link, { LinkProps } from "next/link"
 import { usePathname } from "next/navigation"

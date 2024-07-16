@@ -11,9 +11,9 @@ import {
   VStack,
   useColorModeValue,
 } from "@chakra-ui/react"
-import type { IconProps } from "@phosphor-icons/react"
 import { ArrowSquareIn } from "@phosphor-icons/react/ArrowSquareIn"
 import { CaretRight } from "@phosphor-icons/react/CaretRight"
+import { IconProps } from "@phosphor-icons/react/dist/lib/types"
 import useConnectPlatform from "components/[guild]/JoinModal/hooks/useConnectPlatform"
 import useUser from "components/[guild]/hooks/useUser"
 import DisplayCard from "components/common/DisplayCard"

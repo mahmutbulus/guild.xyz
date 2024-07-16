@@ -6,8 +6,8 @@ import {
   TagRightIcon,
   forwardRef,
 } from "@chakra-ui/react"
-import type { IconProps } from "@phosphor-icons/react"
 import { DotsThreeVertical } from "@phosphor-icons/react/DotsThreeVertical"
+import { IconProps } from "@phosphor-icons/react/dist/lib/types"
 import { ForwardRefExoticComponent, RefAttributes } from "react"
 import rewards from "rewards"
 import { PlatformName, PlatformType } from "types"

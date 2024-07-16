@@ -13,12 +13,10 @@ import {
   useBreakpointValue,
   useColorModeValue,
 } from "@chakra-ui/react"
-import {
-  CalendarBlank,
-  CalendarCheck,
-  CaretDown,
-  TrashSimple,
-} from "@phosphor-icons/react"
+import { CalendarBlank } from "@phosphor-icons/react/CalendarBlank"
+import { CalendarCheck } from "@phosphor-icons/react/CalendarCheck"
+import { CaretDown } from "@phosphor-icons/react/CaretDown"
+import { TrashSimple } from "@phosphor-icons/react/TrashSimple"
 import Button from "components/common/Button"
 import { ChangeEvent } from "react"
 import { useActivityLog } from "../../ActivityLogContext"

@@ -1,15 +1,13 @@
-import {
-  Coins,
-  CurrencyCircleDollar,
-  ImageSquare,
-  Link,
-  ListChecks,
-  LockOpen,
-  Parachute,
-  Robot,
-  Wallet,
-  Wrench,
-} from "@phosphor-icons/react"
+import { Coins } from "@phosphor-icons/react/Coins"
+import { CurrencyCircleDollar } from "@phosphor-icons/react/CurrencyCircleDollar"
+import { ImageSquare } from "@phosphor-icons/react/ImageSquare"
+import { Link } from "@phosphor-icons/react/Link"
+import { ListChecks } from "@phosphor-icons/react/ListChecks"
+import { LockOpen } from "@phosphor-icons/react/LockOpen"
+import { Parachute } from "@phosphor-icons/react/Parachute"
+import { Robot } from "@phosphor-icons/react/Robot"
+import { Wallet } from "@phosphor-icons/react/Wallet"
+import { Wrench } from "@phosphor-icons/react/Wrench"
 import { VISIT_LINK_REGEX } from "requirements/VisitLink/VisitLinkRequirement"
 import { emailData } from "rewards/Email/data"
 import { formData } from "rewards/Forms/data"

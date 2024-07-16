@@ -15,16 +15,14 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react"
-import {
-  ArrowSquareIn,
-  CaretDown,
-  Check,
-  DotsThree,
-  IconProps,
-  LockSimple,
-  Warning,
-  X,
-} from "@phosphor-icons/react"
+import { ArrowSquareIn } from "@phosphor-icons/react/ArrowSquareIn"
+import { CaretDown } from "@phosphor-icons/react/CaretDown"
+import { Check } from "@phosphor-icons/react/Check"
+import { DotsThree } from "@phosphor-icons/react/DotsThree"
+import { LockSimple } from "@phosphor-icons/react/LockSimple"
+import { Warning } from "@phosphor-icons/react/Warning"
+import { X } from "@phosphor-icons/react/X"
+import { IconProps } from "@phosphor-icons/react/dist/lib/types"
 import RecheckAccessesButton from "components/[guild]/RecheckAccessesButton"
 import useGuild from "components/[guild]/hooks/useGuild"
 import useRequirements from "components/[guild]/hooks/useRequirements"

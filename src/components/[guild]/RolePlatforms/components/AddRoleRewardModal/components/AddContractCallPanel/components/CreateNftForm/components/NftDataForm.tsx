@@ -26,13 +26,11 @@ import {
   Tooltip,
   useColorModeValue,
 } from "@chakra-ui/react"
-import {
-  ArrowSquareOut,
-  Clock,
-  Hash,
-  Plus,
-  TrashSimple,
-} from "@phosphor-icons/react"
+import { ArrowSquareOut } from "@phosphor-icons/react/ArrowSquareOut"
+import { Clock } from "@phosphor-icons/react/Clock"
+import { Hash } from "@phosphor-icons/react/Hash"
+import { Plus } from "@phosphor-icons/react/Plus"
+import { TrashSimple } from "@phosphor-icons/react/TrashSimple"
 import StartEndTimeForm from "components/[guild]/RolePlatforms/components/EditRewardAvailabilityModal/components/StartEndTimeForm"
 import useGuildFee from "components/[guild]/collect/hooks/useGuildFee"
 import Button from "components/common/Button"

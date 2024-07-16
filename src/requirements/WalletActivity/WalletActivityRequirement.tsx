@@ -1,11 +1,9 @@
 import { Icon } from "@chakra-ui/react"
-import {
-  ArrowsLeftRight,
-  Coins,
-  FileText,
-  IconProps,
-  Wallet,
-} from "@phosphor-icons/react"
+import { ArrowsLeftRight } from "@phosphor-icons/react/ArrowsLeftRight"
+import { Coins } from "@phosphor-icons/react/Coins"
+import { FileText } from "@phosphor-icons/react/FileText"
+import { Wallet } from "@phosphor-icons/react/Wallet"
+import { IconProps } from "@phosphor-icons/react/dist/lib/types"
 import DataBlockWithDate from "components/[guild]/Requirements/components/DataBlockWithDate"
 import Requirement, {
   RequirementProps,

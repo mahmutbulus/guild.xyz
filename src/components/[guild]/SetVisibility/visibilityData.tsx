@@ -1,10 +1,8 @@
 import { Visibility } from "@guildxyz/types"
-import {
-  Detective,
-  EyeSlash,
-  GlobeHemisphereEast,
-  IconProps,
-} from "@phosphor-icons/react"
+import { Detective } from "@phosphor-icons/react/Detective"
+import { EyeSlash } from "@phosphor-icons/react/EyeSlash"
+import { GlobeHemisphereEast } from "@phosphor-icons/react/GlobeHemisphereEast"
+import { IconProps } from "@phosphor-icons/react/dist/lib/types"
 import { Option } from "components/common/RadioSelect/RadioSelect"
 import PrivateVisibilityOptions from "./components/PrivateVisibilityOptions"
 

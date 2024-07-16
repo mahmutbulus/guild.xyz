@@ -10,13 +10,11 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react"
-import {
-  ArrowSquareOut,
-  Chat,
-  Heart,
-  ShareNetwork,
-  WarningCircle,
-} from "@phosphor-icons/react"
+import { ArrowSquareOut } from "@phosphor-icons/react/ArrowSquareOut"
+import { Chat } from "@phosphor-icons/react/Chat"
+import { Heart } from "@phosphor-icons/react/Heart"
+import { ShareNetwork } from "@phosphor-icons/react/ShareNetwork"
+import { WarningCircle } from "@phosphor-icons/react/WarningCircle"
 import { PropsWithChildren } from "react"
 import { FarcasterCastData } from "../types"
 import FarcasterCastSmall from "./FarcasterCastSmall"

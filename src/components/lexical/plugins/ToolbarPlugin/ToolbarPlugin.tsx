@@ -25,21 +25,19 @@ import {
 } from "@lexical/rich-text"
 import { $isAtNodeEnd, $wrapNodes } from "@lexical/selection"
 import { $getNearestNodeOfType, mergeRegister } from "@lexical/utils"
-import {
-  ArrowClockwise,
-  ArrowCounterClockwise,
-  Check,
-  Code,
-  IconProps,
-  ListBullets,
-  ListNumbers,
-  Quotes,
-  TextBolder,
-  TextHOne,
-  TextHTwo,
-  TextItalic,
-  TextT,
-} from "@phosphor-icons/react"
+import { ArrowClockwise } from "@phosphor-icons/react/ArrowClockwise"
+import { ArrowCounterClockwise } from "@phosphor-icons/react/ArrowCounterClockwise"
+import { Check } from "@phosphor-icons/react/Check"
+import { Code } from "@phosphor-icons/react/Code"
+import { ListBullets } from "@phosphor-icons/react/ListBullets"
+import { ListNumbers } from "@phosphor-icons/react/ListNumbers"
+import { Quotes } from "@phosphor-icons/react/Quotes"
+import { TextBolder } from "@phosphor-icons/react/TextB"
+import { TextHOne } from "@phosphor-icons/react/TextHOne"
+import { TextHTwo } from "@phosphor-icons/react/TextHTwo"
+import { TextItalic } from "@phosphor-icons/react/TextItalic"
+import { TextT } from "@phosphor-icons/react/TextT"
+import { IconProps } from "@phosphor-icons/react/dist/lib/types"
 import Button from "components/common/Button"
 import {
   $createParagraphNode,

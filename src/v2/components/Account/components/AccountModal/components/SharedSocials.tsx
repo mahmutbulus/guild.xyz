@@ -1,11 +1,9 @@
-import type { Icon } from "@phosphor-icons/react"
-import {
-  ArrowSquareOut,
-  CaretDown,
-  Check,
-  Shield,
-  ShieldCheck,
-} from "@phosphor-icons/react/dist/ssr"
+import { Icon } from "@phosphor-icons/react/dist/lib/types"
+import { ArrowSquareOut } from "@phosphor-icons/react/dist/ssr/ArrowSquareOut"
+import { CaretDown } from "@phosphor-icons/react/dist/ssr/CaretDown"
+import { Check } from "@phosphor-icons/react/dist/ssr/Check"
+import { Shield } from "@phosphor-icons/react/dist/ssr/Shield"
+import { ShieldCheck } from "@phosphor-icons/react/dist/ssr/ShieldCheck"
 import useGuild, { useSimpleGuild } from "components/[guild]/hooks/useGuild"
 import useUser from "components/[guild]/hooks/useUser"
 

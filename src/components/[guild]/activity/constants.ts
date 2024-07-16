@@ -1,35 +1,33 @@
-import {
-  ArrowLeft,
-  ArrowRight,
-  ArrowsClockwise,
-  ArrowsLeftRight,
-  Eye,
-  File,
-  FileMinus,
-  FilePlus,
-  FileText,
-  FolderUser,
-  House,
-  IconProps,
-  IdentificationCard,
-  LinkSimple,
-  LockKey,
-  PaintBrushBroad,
-  PlusMinus,
-  Question,
-  Shield,
-  ShieldCheck,
-  SignIn,
-  SignOut,
-  Star,
-  StarHalf,
-  TextT,
-  UserCircleGear,
-  UserFocus,
-  UserList,
-  UserMinus,
-  UserSwitch,
-} from "@phosphor-icons/react"
+import { ArrowLeft } from "@phosphor-icons/react/ArrowLeft"
+import { ArrowRight } from "@phosphor-icons/react/ArrowRight"
+import { ArrowsClockwise } from "@phosphor-icons/react/ArrowsClockwise"
+import { ArrowsLeftRight } from "@phosphor-icons/react/ArrowsLeftRight"
+import { Eye } from "@phosphor-icons/react/Eye"
+import { File } from "@phosphor-icons/react/File"
+import { FileMinus } from "@phosphor-icons/react/FileMinus"
+import { FilePlus } from "@phosphor-icons/react/FilePlus"
+import { FileText } from "@phosphor-icons/react/FileText"
+import { FolderUser } from "@phosphor-icons/react/FolderUser"
+import { House } from "@phosphor-icons/react/House"
+import { IdentificationCard } from "@phosphor-icons/react/IdentificationCard"
+import { LinkSimple } from "@phosphor-icons/react/LinkSimple"
+import { LockKey } from "@phosphor-icons/react/LockKey"
+import { PaintBrushBroad } from "@phosphor-icons/react/PaintBrushBroad"
+import { PlusMinus } from "@phosphor-icons/react/PlusMinus"
+import { Question } from "@phosphor-icons/react/Question"
+import { Shield } from "@phosphor-icons/react/Shield"
+import { ShieldCheck } from "@phosphor-icons/react/ShieldCheck"
+import { SignIn } from "@phosphor-icons/react/SignIn"
+import { SignOut } from "@phosphor-icons/react/SignOut"
+import { Star } from "@phosphor-icons/react/Star"
+import { StarHalf } from "@phosphor-icons/react/StarHalf"
+import { TextT } from "@phosphor-icons/react/TextT"
+import { UserCircleGear } from "@phosphor-icons/react/UserCircleGear"
+import { UserFocus } from "@phosphor-icons/react/UserFocus"
+import { UserList } from "@phosphor-icons/react/UserList"
+import { UserMinus } from "@phosphor-icons/react/UserMinus"
+import { UserSwitch } from "@phosphor-icons/react/UserSwitch"
+import { IconProps } from "@phosphor-icons/react/dist/lib/types"
 import { ForwardRefExoticComponent, RefAttributes } from "react"
 
 export enum ACTION {
