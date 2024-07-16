@@ -81,7 +81,7 @@ const LinkedAddress = ({ addressData }: Props) => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Badge variant="secondary">
+                  <Badge>
                     <Image
                       width={15}
                       height={15}
@@ -98,8 +98,7 @@ const LinkedAddress = ({ addressData }: Props) => {
           )}
           {walletType !== "EVM" && <AddressTypeTag type={walletType} size="sm" />}
           {isCurrent && (
-            // TODO: colorScheme="blue"
-            <Badge size="sm" variant="secondary">
+            <Badge size="sm" colorScheme="blue">
               Current
             </Badge>
           )}
@@ -137,7 +136,7 @@ const LinkedAddress = ({ addressData }: Props) => {
             )}
             <DropdownMenuItem
               onClick={onOpen}
-              className="text-destructive-ghost-foreground"
+              className="text-destructive-subtle-foreground"
             >
               <LinkBreak weight="bold" className="mr-1.5" />
               Disconnect
@@ -163,7 +162,7 @@ const LinkedAddress = ({ addressData }: Props) => {
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction asChild>
               <Button
-                variant="destructive"
+                colorScheme="destructive"
                 onClick={removeAddress}
                 isLoading={isDisconnectLoading}
                 loadingText={disconnectSignLoadingText || "Removing"}

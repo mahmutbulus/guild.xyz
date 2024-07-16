@@ -26,7 +26,7 @@ const UsersGuildPins = () => {
       )}
 
       <div
-        className="invisible-scrollbar -mx-4 relative min-w-full overflow-x-auto"
+        className="-mx-4 invisible-scrollbar min-h-20 w-full overflow-x-scroll"
         style={{
           maskImage:
             "linear-gradient(to right, transparent 0px, black 16px, black calc(100% - 16px), transparent)",
@@ -81,9 +81,7 @@ const GuildPin = ({
         <img src={image} alt={name} />
 
         <div className="-bottom-1 -translate-x-1/2 absolute left-1/2 flex rounded-lg border-2 border-card bg-card font-semibold">
-          <Badge variant="secondary" size="sm">
-            #{rank}
-          </Badge>
+          <Badge size="sm">#{rank}</Badge>
         </div>
       </div>
     </Link>

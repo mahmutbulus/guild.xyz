@@ -46,15 +46,15 @@ export const GuildCard: React.FC<Props> = ({ guildData }) => (
       )}
     </div>
     <div className="flex gap-2">
-      <Badge variant="secondary" className="space-x-2">
-        <Users />
+      <Badge className="space-x-2">
+        <Users weight="bold" />
         <span>
           {new Intl.NumberFormat("en", { notation: "compact" }).format(
             guildData.memberCount
           )}
         </span>
       </Badge>
-      <Badge variant="secondary">{pluralize(guildData.rolesCount, "role")}</Badge>
+      <Badge>{pluralize(guildData.rolesCount, "role")}</Badge>
     </div>
   </Card>
 )

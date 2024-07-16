@@ -12,6 +12,7 @@ import { anchorVariants } from "@/components/ui/Anchor"
 import { Button, ButtonProps } from "@/components/ui/Button"
 import {
   Dialog,
+  DialogBody,
   DialogCloseButton,
   DialogContent,
   DialogHeader,
@@ -28,7 +29,7 @@ import {
 import { Skeleton } from "@/components/ui/Skeleton"
 import { cn } from "@/lib/utils"
 import { UserProfile } from "@guildxyz/types"
-import { useEffect } from "react"
+import { Fragment, useEffect } from "react"
 import pluralize from "utils/pluralize"
 import useEditSharedSocials from "../hooks/useEditSharedSocials"
 
@@ -50,11 +51,10 @@ const SharedSocials = () => {
 
   return (
     <Dialog>
-      {/* TODO: scrollBehavior="inside" (maybe we can do it here and don't need to abstract it into the component?) */}
       <DialogTrigger asChild>
         {!guildSharedSocial ? (
           <Button {...buttonProps}>
-            <Shield weight="bold" className="mr-1" />
+            <Shield weight="bold" />
             {`Shared with ${pluralize(
               sharedSocials?.filter(
                 (sharedSocial) => sharedSocial.isShared !== false
@@ -64,58 +64,58 @@ const SharedSocials = () => {
           </Button>
         ) : guildSharedSocial.isShared !== false ? (
           <Button {...buttonProps}>
-            <ShieldCheck weight="bold" className="mr-1 text-primary" />
+            <ShieldCheck weight="bold" className="text-primary" />
             Shared with guild
           </Button>
         ) : (
           <Button {...buttonProps}>
-            <Shield weight="bold" className="mr-1" />
+            <Shield weight="bold" />
             Hidden to guild
           </Button>
         )}
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent scrollBody>
         <DialogHeader>
           <DialogTitle>Shared account connections</DialogTitle>
         </DialogHeader>
 
-        <p className="mb-10">
-          Choose which guilds you'd like to share your profile with.{" "}
-          <a
-            href="https://help.guild.xyz/en/articles/8489031-privacy-for-members"
-            className={anchorVariants({
-              variant: "muted",
-              className: "font-semibold",
-            })}
-            target="_blank"
-          >
-            Learn more{" "}
-            <ArrowSquareOut weight="bold" className="-top-px relative inline" />
-          </a>
-        </p>
+        <DialogBody className="gap-10" scroll>
+          <p>
+            Choose which guilds you'd like to share your profile with.{" "}
+            <a
+              href="https://help.guild.xyz/en/articles/8489031-privacy-for-members"
+              className={anchorVariants({
+                variant: "muted",
+                className: "font-semibold",
+              })}
+              target="_blank"
+            >
+              Learn more{" "}
+              <ArrowSquareOut weight="bold" className="-top-px relative inline" />
+            </a>
+          </p>
 
-        <div className="flex flex-col gap-4">
-          {guildSharedSocial && (
-            <>
-              <ShareSocialsWithGuildSelect
-                key={guildSharedSocial.guildId}
-                guildId={guildSharedSocial.guildId}
-                sharedSocials={sharedSocials}
-              />
-              <hr className="border-border-muted" />
-            </>
-          )}
-          {restSharedSocials.map((sharedSocial) => (
-            <>
-              <ShareSocialsWithGuildSelect
-                key={sharedSocial.guildId}
-                guildId={sharedSocial.guildId}
-                sharedSocials={sharedSocials}
-              />
-              <hr className="border-border-muted" />
-            </>
-          ))}
-        </div>
+          <div className="flex flex-col gap-4">
+            {guildSharedSocial && (
+              <>
+                <ShareSocialsWithGuildSelect
+                  guildId={guildSharedSocial.guildId}
+                  sharedSocials={sharedSocials}
+                />
+                <hr className="opacity-60" />
+              </>
+            )}
+            {restSharedSocials.map((sharedSocial, i) => (
+              <Fragment key={sharedSocial.guildId}>
+                <ShareSocialsWithGuildSelect
+                  guildId={sharedSocial.guildId}
+                  sharedSocials={sharedSocials}
+                />
+                {i < sharedSocials.length - 1 && <hr className="opacity-60" />}
+              </Fragment>
+            ))}
+          </div>
+        </DialogBody>
 
         <DialogCloseButton />
       </DialogContent>
@@ -173,7 +173,7 @@ const ShareSocialsWithGuildSelect = ({
           <Button
             variant="ghost"
             size="sm"
-            className={cn("ml-auto gap-1.5", {
+            className={cn("ml-auto", {
               "text-success": isSharedBoolean,
             })}
           >
