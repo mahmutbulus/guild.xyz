@@ -41,6 +41,9 @@ export const GUILD_REWARD_NFT_FACTORY_ADDRESSES = {
   POLYGON_ZKEVM: "0x13ec6B98362E43Add08f7CC4f6befd02fa52eE01",
   ZETACHAIN: "0x13ec6B98362E43Add08f7CC4f6befd02fa52eE01",
   MINT: "0x097E05f7a194a30A482CC9616460498980bE79d3",
+  MODE: "0x097E05f7a194a30A482CC9616460498980bE79d3",
+  AVALANCHE: "0x13ec6b98362e43add08f7cc4f6befd02fa52ee01",
+  LISK: "0x13ec6b98362e43add08f7cc4f6befd02fa52ee01",
   SEPOLIA: "0xa9e8e62266d449b766d305075248790bdd46facb",
 } as const satisfies Partial<Record<Chain, `0x${string}`>>
 
@@ -148,10 +151,6 @@ const useCreateNft = (
       functionName: "deployConfigurableNFT",
       args: contractCallParams,
     })
-
-    if (process.env.NEXT_PUBLIC_MOCK_CONNECTOR) {
-      return Promise.resolve({} as CreateNFTResponse)
-    }
 
     const hash = await walletClient.writeContract({
       ...request,

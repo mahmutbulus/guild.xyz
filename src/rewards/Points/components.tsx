@@ -1,19 +1,10 @@
 import dynamic from "next/dynamic"
 import { AddRewardPanelLoadingSpinner } from "rewards/components/AddRewardPanelLoadingSpinner"
-import LoadingRewardPreview from "rewards/components/LoadingRewardPreview"
-import { CardSettingsComponent, RewardComponentsData } from "rewards/types"
-import usePointsCardProps from "./usePointsCardProps"
+import { RewardComponentsData } from "rewards/types"
+import PointsCardButton from "./PointsCardButton"
+import PointsCardMenu from "./PointsCardMenu"
 
 export default {
-  cardPropsHook: usePointsCardProps,
-  cardSettingsComponent: dynamic(() => import("rewards/Points/PointsCardSettings"), {
-    ssr: false,
-    loading: () => <AddRewardPanelLoadingSpinner height={20} />,
-  }) as CardSettingsComponent,
-  RewardPreview: dynamic(() => import("rewards/components/PointsPreview"), {
-    ssr: false,
-    loading: LoadingRewardPreview,
-  }),
   AddRewardPanel: dynamic(
     () =>
       import(
@@ -24,7 +15,9 @@ export default {
       loading: AddRewardPanelLoadingSpinner,
     }
   ),
-  RoleCardComponent: dynamic(() => import("rewards/components/PointsReward"), {
+  SmallRewardPreview: dynamic(() => import("rewards/components/PointsReward"), {
     ssr: false,
   }),
+  cardButton: PointsCardButton,
+  cardMenuComponent: PointsCardMenu,
 } satisfies RewardComponentsData

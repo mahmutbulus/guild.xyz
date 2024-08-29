@@ -1,20 +1,38 @@
-"use client"
-
 import { cn } from "@/lib/utils"
 import * as AvatarPrimitive from "@radix-ui/react-avatar"
+import { VariantProps, cva } from "class-variance-authority"
 import NextImage from "next/image"
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react"
+import { Skeleton } from "./Skeleton"
+
+export const avatarVariants = cva(
+  "relative flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-image",
+  {
+    variants: {
+      size: {
+        xs: "size-5",
+        sm: "size-7",
+        md: "size-10",
+        lg: "size-12",
+        xl: "size-16",
+        "2xl": "size-20",
+        "3xl": "size-28",
+      },
+    },
+    defaultVariants: {
+      size: "md",
+    },
+  } as const
+)
 
 const Avatar = forwardRef<
   ElementRef<typeof AvatarPrimitive.Root>,
-  ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
->(({ className, ...props }, ref) => (
+  ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> &
+    VariantProps<typeof avatarVariants>
+>(({ className, size, ...props }, ref) => (
   <AvatarPrimitive.Root
     ref={ref}
-    className={cn(
-      "relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-image",
-      className
-    )}
+    className={cn(avatarVariants({ size }), className)}
     {...props}
   />
 ))
@@ -52,7 +70,7 @@ AvatarImage.displayName = AvatarPrimitive.Image.displayName
 const AvatarFallback = forwardRef<
   ElementRef<typeof AvatarPrimitive.Fallback>,
   ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
->(({ className, ...props }, ref) => (
+>(({ className, children, ...props }, ref) => (
   <AvatarPrimitive.Fallback
     ref={ref}
     className={cn(
@@ -60,7 +78,9 @@ const AvatarFallback = forwardRef<
       className
     )}
     {...props}
-  />
+  >
+    {children || <Skeleton className="size-full" />}
+  </AvatarPrimitive.Fallback>
 ))
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName
 

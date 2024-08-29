@@ -1,3 +1,4 @@
+import { background } from "@chakra-ui/react"
 import type { Config } from "tailwindcss"
 
 const config = {
@@ -23,10 +24,23 @@ const config = {
         display: ["var(--font-dystopian,sans-serif)"],
       },
       colors: {
-        banner: "hsl(var(--banner))",
-        border: "hsl(var(--border))",
-        "border-muted": "hsl(var(--border-muted))",
-        input: "hsl(var(--input))",
+        banner: {
+          DEFAULT: "hsl(var(--banner))",
+          dark: "hsl(var(--banner-dark))",
+          foreground: "hsl(var(--banner-foreground))"
+        },
+        border: {
+          DEFAULT: "hsl(var(--border))",
+          muted: "hsl(var(--border-muted))"
+        },
+        input: {
+          background: "hsla(var(--input-background))",
+          border: {
+            DEFAULT: "hsla(var(--input-border))",
+            accent: "hsla(var(--input-border-accent))",
+            invalid: "hsl(var(--input-border-invalid))"
+          },
+        },
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -154,6 +168,9 @@ const config = {
           active: "hsl(var(--farcaster-active))",
         },
       },
+      opacity: {
+        banner: "var(--banner-opacity)"
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -190,10 +207,13 @@ const config = {
         popover: "1500",
         toast: "1700",
         tooltip: "1800", 
-      }
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require('@tailwindcss/typography')
+  ],
 } satisfies Config
 
 export default config
